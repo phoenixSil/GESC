@@ -1,0 +1,14 @@
+[2022-11-07 07:27:51.771 -05:00  INF]  Now listening on: https://localhost:7020
+[2022-11-07 07:27:51.844 -05:00  INF]  Now listening on: http://localhost:5020
+[2022-11-07 07:27:51.944 -05:00  INF]  Application started. Press Ctrl+C to shut down.
+[2022-11-07 07:27:52.161 -05:00  INF]  Hosting environment: Development
+[2022-11-07 07:27:52.180 -05:00  INF]  Content root path: D:\Projets\Schoolap\Microservices\GESC\Gesc.Api\
+[2022-11-07 07:27:58.306 -05:00  INF]  Request starting HTTP/2 GET https://localhost:7020/api/Filiere - -
+[2022-11-07 07:27:58.440 -05:00  INF]  Executing endpoint 'Gesc.Api.Controllers.FiliereController.LireTousLesFilieres (Gesc.Api)'
+[2022-11-07 07:27:58.475 -05:00  INF]  Route matched with {action = "LireTousLesFilieres", controller = "Filiere"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.List`1[Gesc.Api.Dtos.Config.Filieres.FiliereDto]]] LireTousLesFilieres() on controller Gesc.Api.Controllers.FiliereController (Gesc.Api).
+[2022-11-07 07:27:59.469 -05:00  INF]  Entity Framework Core 6.0.10 initialized 'SchoolConfigDbContext' using provider 'Microsoft.EntityFrameworkCore.InMemory:6.0.10' with options: StoreName=InMem 
+[2022-11-07 07:27:59.667 -05:00  INF]  Executing StatusCodeResult, setting HTTP status code 204
+[2022-11-07 07:27:59.684 -05:00  INF]  Executed action Gesc.Api.Controllers.FiliereController.LireTousLesFilieres (Gesc.Api) in 1191.335ms
+[2022-11-07 07:27:59.687 -05:00  INF]  Executed endpoint 'Gesc.Api.Controllers.FiliereController.LireTousLesFilieres (Gesc.Api)'
+[2022-11-07 07:27:59.725 -05:00  INF]  Request finished HTTP/2 GET https://localhost:7020/api/Filiere - - - 204 - - 1426.2949ms
+[2022-11-07 07:28:17.402 -05:00  INF]  Application is shutting down...
