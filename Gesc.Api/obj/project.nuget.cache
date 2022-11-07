@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "aXkY5Yck3UjRrTO37OkE9YyS8waBlvQwrO6XmHumwOfLjsZSA+YGlNMaQ5aZZtbBwta8PD+EVkfZjp3GltfHEg==",
+  "dgSpecHash": "BbFI2seFeD4Vog/XFVav6jvGJucTHFbZqAvIdwkUHQOgNfS1Ldk0rcrgxvXv5e4gLUaptQtwjHHSFPQmZNu0ig==",
   "success": true,
   "projectFilePath": "D:\\Projets\\Schoolap\\Microservices\\GESC\\Gesc.Api\\Gesc.Api.csproj",
   "expectedPackageFiles": [
@@ -52,8 +52,10 @@
     "C:\\Users\\tsill\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\tsill\\.nuget\\packages\\microsoft.netcore.targets\\1.0.1\\microsoft.netcore.targets.1.0.1.nupkg.sha512",
     "C:\\Users\\tsill\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\tsill\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.17.0\\microsoft.visualstudio.azure.containers.tools.targets.1.17.0.nupkg.sha512",
     "C:\\Users\\tsill\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\tsill\\.nuget\\packages\\microsoft.win32.systemevents\\4.7.0\\microsoft.win32.systemevents.4.7.0.nupkg.sha512",
+    "C:\\Users\\tsill\\.nuget\\packages\\mscommun\\1.0.0\\mscommun.1.0.0.nupkg.sha512",
     "C:\\Users\\tsill\\.nuget\\packages\\newtonsoft.json\\9.0.1\\newtonsoft.json.9.0.1.nupkg.sha512",
     "C:\\Users\\tsill\\.nuget\\packages\\polly\\7.2.2\\polly.7.2.2.nupkg.sha512",
     "C:\\Users\\tsill\\.nuget\\packages\\polly.extensions.http\\3.0.0\\polly.extensions.http.3.0.0.nupkg.sha512",
@@ -123,8 +125,7 @@
     "C:\\Users\\tsill\\.nuget\\packages\\system.threading.tasks.extensions\\4.0.0\\system.threading.tasks.extensions.4.0.0.nupkg.sha512",
     "C:\\Users\\tsill\\.nuget\\packages\\system.windows.extensions\\4.7.0\\system.windows.extensions.4.7.0.nupkg.sha512",
     "C:\\Users\\tsill\\.nuget\\packages\\system.xml.readerwriter\\4.0.11\\system.xml.readerwriter.4.0.11.nupkg.sha512",
-    "C:\\Users\\tsill\\.nuget\\packages\\system.xml.xdocument\\4.0.11\\system.xml.xdocument.4.0.11.nupkg.sha512",
-    "C:\\Users\\tsill\\.nuget\\packages\\mscommun\\1.0.0\\mscommun.1.0.0.nupkg.sha512"
+    "C:\\Users\\tsill\\.nuget\\packages\\system.xml.xdocument\\4.0.11\\system.xml.xdocument.4.0.11.nupkg.sha512"
   ],
   "logs": []
 }

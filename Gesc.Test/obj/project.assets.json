@@ -8649,11 +8649,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "d:\\Projets\\Schoolap\\Microservices\\GESC\\Gesc.Test\\Gesc.Test.csproj",
+      "projectUniqueName": "D:\\Projets\\Schoolap\\Microservices\\GESC\\Gesc.Test\\Gesc.Test.csproj",
       "projectName": "Gesc.Test",
-      "projectPath": "d:\\Projets\\Schoolap\\Microservices\\GESC\\Gesc.Test\\Gesc.Test.csproj",
+      "projectPath": "D:\\Projets\\Schoolap\\Microservices\\GESC\\Gesc.Test\\Gesc.Test.csproj",
       "packagesPath": "C:\\Users\\tsill\\.nuget\\packages\\",
-      "outputPath": "d:\\Projets\\Schoolap\\Microservices\\GESC\\Gesc.Test\\obj\\",
+      "outputPath": "D:\\Projets\\Schoolap\\Microservices\\GESC\\Gesc.Test\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -8667,6 +8667,10 @@
         "net6.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
+        "C:\\Users\\tsill\\Documents\\GitHub\\MSLearn\\Packages": {},
+        "C:\\Users\\tsill\\Documents\\GitHub\\Schoolap\\Backend2.0\\SaBack\\Packages": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
