@@ -103,3 +103,4 @@ D:\Projets\Schoolap\Microservices\GESC\Gesc.Api\obj\Debug\net6.0\refint\Gesc.Api
 D:\Projets\Schoolap\Microservices\GESC\Gesc.Api\obj\Debug\net6.0\Gesc.Api.pdb
 D:\Projets\Schoolap\Microservices\GESC\Gesc.Api\obj\Debug\net6.0\Gesc.Api.genruntimeconfig.cache
 D:\Projets\Schoolap\Microservices\GESC\Gesc.Api\obj\Debug\net6.0\ref\Gesc.Api.dll
+D:\Projets\Schoolap\Microservices\GESC\Gesc.Api\bin\Debug\net6.0\appsettings.Production.json

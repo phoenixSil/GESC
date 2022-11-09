@@ -11,6 +11,5 @@ namespace Gesc.Api.Dtos.Config.Niveaux
         public string Designation { get; set; }
         [Required]
         public Guid FiliereCycleId { get; set; }
-        public bool Complete { get; set; } = false;
     }
 }

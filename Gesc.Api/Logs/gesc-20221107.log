@@ -78,3 +78,4 @@
 [2022-11-07 07:37:27.254 -05:00  INF]  Executed action Gesc.Api.Controllers.FiliereController.AjouterUneFiliere (Gesc.Api) in 91.8002ms
 [2022-11-07 07:37:27.256 -05:00  INF]  Executed endpoint 'Gesc.Api.Controllers.FiliereController.AjouterUneFiliere (Gesc.Api)'
 [2022-11-07 07:37:27.258 -05:00  INF]  Request finished HTTP/2 POST https://localhost:7020/api/Filiere application/json 195 - 200 - application/json;+charset=utf-8 111.5535ms
+[2022-11-07 22:19:25.035 -05:00  INF]  Entity Framework Core 6.0.10 initialized 'SchoolConfigDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.10' with options: None

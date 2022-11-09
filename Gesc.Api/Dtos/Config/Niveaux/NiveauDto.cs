@@ -8,6 +8,5 @@ namespace Gesc.Api.Dtos.Config.Niveaux
     {
         public int ValeurCycle { get; set; }
         public string Designation { get; set; }
-        public bool Complete { get; set; }
     }
 }

@@ -23,9 +23,14 @@ builder.Logging.AddSerilog(logger);
 Log.Information("GCE Demmarre demarre ");
 builder.Host.UseSerilog((ctx, lc) => lc.WriteTo.Console().ReadFrom.Configuration(ctx.Configuration));
 
-// Add services to the container.
+//Add services to the container.
+if(builder.Environment.IsProduction()){
+    builder.Services.AddSqlServerDbConfiguration<SchoolConfigDbContext>(builder.Configuration.GetConnectionString("appConnString"));
+}
+else {
+    builder.Services.AddInMemoryDataBaseConfiguration<SchoolConfigDbContext>("InMem");
+}
 
-builder.Services.AddInMemoryDataBaseConfiguration<SchoolConfigDbContext>("InMem");
 builder.Services.ConfigureApplicationServices();
 builder.Services.ConfigureControllerServices();
 builder.Services.ConfigurePersistenceServices(builder.Configuration);
