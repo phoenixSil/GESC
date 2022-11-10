@@ -8,6 +8,7 @@ using Gesc.Api.Modeles;
 using Gesc.Api.Modeles.Config;
 using Gesc.Api.Dtos.Niveaus.Validations;
 using Gesc.Api.Dtos.Config.Niveaux;
+using Gesc.Api.Proxies.Contrats;
 
 namespace Gesc.Api.Features.CommandHandlers.Niveaux
 {
@@ -15,13 +16,13 @@ namespace Gesc.Api.Features.CommandHandlers.Niveaux
     {
         private readonly IPointDaccess _pointDaccess;
         private readonly IMapper _mapper;
-        private readonly IMediator _mediator;
+        private readonly IGieProxy _gieProxy;
 
-        public AjouterUnNiveauCmdHdler(IMediator mediator, IMapper mapper, IPointDaccess pointDaccess)
+        public AjouterUnNiveauCmdHdler(IGieProxy gieProxy, IMapper mapper, IPointDaccess pointDaccess)
         {
             _pointDaccess = pointDaccess;
             _mapper = mapper;
-            _mediator = mediator;
+            _gieProxy = gieProxy;
         }
         public async Task<ReponseDeRequette> Handle(AjouterUnNiveauCmd request, CancellationToken cancellationToken)
         {
@@ -52,6 +53,9 @@ namespace Gesc.Api.Features.CommandHandlers.Niveaux
                     reponse.Success = true;
                     reponse.Message = "Ajout de Personne Reussit";
                     reponse.Id = result.Id;
+
+                    // On ajoutte le Niveau dans la Ms Dinscription des Etudiants 
+                    await _gieProxy.AjoutterNiveau(result);
                 }
             }
 
