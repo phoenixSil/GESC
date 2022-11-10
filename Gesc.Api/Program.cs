@@ -1,11 +1,8 @@
 using Gesc.Api.Extensions;
 using Gesc.Api.GeneralExtensions;
 using Gesc.Api.Datas;
-using Gesc.Api.Extensions;
-using MediatR;
-using MsCommun.Extensions;
 using Serilog;
-using System.Reflection;
+using MsCommun.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,7 +17,7 @@ builder.Logging.ClearProviders();
 builder.Logging.AddSerilog(logger);
 
 
-Log.Information("GCE Demmarre demarre ");
+Log.Information("GSCE Demmarre demarre ");
 builder.Host.UseSerilog((ctx, lc) => lc.WriteTo.Console().ReadFrom.Configuration(ctx.Configuration));
 
 //Add services to the container.
