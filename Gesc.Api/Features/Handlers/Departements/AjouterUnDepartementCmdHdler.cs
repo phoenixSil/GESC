@@ -42,12 +42,12 @@ namespace Gesc.Api.Features.CommandHandlers.Departements
                 if (result == null)
                 {
                     reponse.Success = false;
-                    reponse.Message = "Echec de Lajout dune Departement a la personne donc l'Id est notee dans le champs d'Id";
+                    reponse.Message = "Echec de Lajout d'un Departement a la personne donc l'Id est notee dans le champs d'Id";
                 }
                 else
                 {
                     reponse.Success = true;
-                    reponse.Message = "Ajout de Personne Reussit";
+                    reponse.Message = "Ajout de Departement Reussit";
                     reponse.Id = result.Id;
                 }
             }

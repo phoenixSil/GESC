@@ -46,7 +46,7 @@ namespace Gesc.Api.Features.CommandHandlers.Filieres
                 else
                 {
                     reponse.Success = true;
-                    reponse.Message = "Ajout de Personne Reussit";
+                    reponse.Message = "Ajout de Filiere Reussit";
                     reponse.Id = result.Id;
                 }
             }

@@ -1,4 +1,5 @@
 ﻿using Gesc.Api.Dtos.Config.Niveaux;
+using Gesc.Api.Modeles.Config;
 using Newtonsoft.Json;
 using System.Text;
 using System.Text.Json;
@@ -8,10 +9,10 @@ namespace Gesc.Api.Proxies
 {
     public static class UtilProxy
     {
-        public static StringContent SerializeRequette(NiveauPourGieDto dto)
+        public static StringContent SerializeRequette(NiveauGieACreerDto dto)
         {
             return new StringContent(
-                JsonConvert.SerializeObject(dto),
+                JsonSerializer.Serialize(dto),
                 Encoding.UTF8,
                 "application/json");
         }
@@ -31,6 +32,11 @@ namespace Gesc.Api.Proxies
             var stream = await resultCall.Content.ReadAsStreamAsync();
             T t = await JsonSerializer.DeserializeAsync<T>(stream, new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
             return t;
+        }
+
+        public static NiveauGieACreerDto GenerateDtoNiveauxPourGie(Niveau niveau)
+        {
+            throw new NotImplementedException();
         }
     }
 }

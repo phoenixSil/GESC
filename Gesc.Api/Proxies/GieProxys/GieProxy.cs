@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
+using Gesc.Api.Datas;
 using Gesc.Api.Dtos.Config.Niveaux;
 using Gesc.Api.Modeles.Config;
 using Gesc.Api.Proxies.Contrats;
+using Gesc.Api.Services.Contrats;
 using MsCommun.Reponses;
 using System.Net.Http;
 using System.Text;
@@ -13,17 +15,21 @@ namespace Gesc.Api.Proxies.GieProxys
     {
         private readonly IMapper _mapper;
         private readonly HttpClient _httpClient;
-        public GieProxy(IMapper mapper, HttpClient httpClient)
+        private readonly IServiceDeFiliere _serviceFiliere;
+        private readonly IServiceDeCycle _serviceCycle;
+        public GieProxy(IServiceDeCycle serviceCycle,IServiceDeFiliere serviceFiliere, IMapper mapper, HttpClient httpClient)
         {
             _mapper = mapper;
             _httpClient = httpClient;
+            _serviceFiliere = serviceFiliere;
+            _serviceCycle = serviceCycle;
         }
 
         public async Task<ReponseDeRequette> AjoutterNiveau(Niveau niveau)
         {
-            var dto = _mapper.Map<NiveauPourGieDto>(niveau);
+            var dto = await GenerateDtoNiveauxPourGie(niveau);
             var niveauStringContent = UtilProxy.SerializeRequette(dto);
-            var response = await _httpClient.PostAsync($"Etudiant/Niveau/", niveauStringContent).ConfigureAwait(false);
+            var response = await _httpClient.PostAsync($"Etudiant/Niveau", niveauStringContent).ConfigureAwait(false);
 
             await UtilProxy.VerifierSiLappelAEchouer(response).ConfigureAwait(false);
 
@@ -32,6 +38,24 @@ namespace Gesc.Api.Proxies.GieProxys
             if (parsed.Success)
                 return parsed;
             throw new Exception($" parsed na pas marcher {parsed}");
+        }
+
+        private async Task<NiveauGieACreerDto> GenerateDtoNiveauxPourGie(Niveau niveau)
+        {
+            var CycleDetail = await _serviceCycle.LireDetailDunCycle(niveau.FiliereCycle.CycleId).ConfigureAwait(false); 
+            var filiereDetail = await _serviceFiliere.LireDetailDuneFiliere(niveau.FiliereCycle.FiliereId).ConfigureAwait(false);
+
+            var dto = new NiveauGieACreerDto
+            {
+                Id = Guid.NewGuid(),
+                Designation = niveau.Designation,
+                DesignationCycle = CycleDetail.Designation,
+                DesignationFiliere = filiereDetail.Designation,
+                NumeroExterne = niveau.Id,
+                ValeurCycle = niveau.ValeurCycle
+            };
+
+            return dto;
         }
     }
 }

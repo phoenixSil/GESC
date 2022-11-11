@@ -46,7 +46,7 @@ namespace Gesc.Api.MappingProfile
             CreateMap<Niveau, NiveauDetailDto>().ReverseMap();
             CreateMap<Niveau, NiveauAModifierDto>().ReverseMap();
             CreateMap<NiveauACreerDto, NiveauAModifierDto>().ReverseMap();
-            CreateMap<Niveau, NiveauPourGieDto>()
+            CreateMap<Niveau, NiveauGieACreerDto>()
                 .ForMember(dest => dest.NumeroExterne,
                     opt => opt.MapFrom(src => src.Id))
                 .ForMember(dest => dest.DesignationFiliere,

@@ -33,7 +33,7 @@ namespace Gesc.Api.Features.CommandHandlers.Niveaux
             if (resultatValidation.IsValid == false)
             {
                 reponse.Success = false;
-                reponse.Message = "Echec de Lajout dune Niveau a la personne donc l'Id est notee dans le champs d'Id";
+                reponse.Message = "Echec de Lajout d'un Niveau a la personne donc l'Id est notee dans le champs d'Id";
                 reponse.Errors = resultatValidation.Errors.Select(q => q.ErrorMessage).ToList();
             }
             else
@@ -46,12 +46,12 @@ namespace Gesc.Api.Features.CommandHandlers.Niveaux
                 if (result == null)
                 {
                     reponse.Success = false;
-                    reponse.Message = "Echec de Lajout dune Niveau a la personne donc l'Id est notee dans le champs d'Id";
+                    reponse.Message = "Echec de Lajout d'un Niveau a la personne donc l'Id est notee dans le champs d'Id";
                 }
                 else
                 {
                     reponse.Success = true;
-                    reponse.Message = "Ajout de Personne Reussit";
+                    reponse.Message = "Ajout de Niveau Reussit";
                     reponse.Id = result.Id;
 
                     // On ajoutte le Niveau dans la Ms Dinscription des Etudiants 

@@ -42,12 +42,12 @@ namespace Gesc.Api.Features.CommandHandlers.Cycles
                 if (result == null)
                 {
                     reponse.Success = false;
-                    reponse.Message = "Echec de Lajout dune Cycle a la personne donc l'Id est notee dans le champs d'Id";
+                    reponse.Message = "Echec de Lajout d'un Cycle a la personne donc l'Id est notee dans le champs d'Id";
                 }
                 else
                 {
                     reponse.Success = true;
-                    reponse.Message = "Ajout de Personne Reussit";
+                    reponse.Message = "Ajout de Cycle Reussit";
                     reponse.Id = result.Id;
                 }
             }
