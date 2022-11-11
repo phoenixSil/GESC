@@ -1,12 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Gesc.Api.Dtos.Config.Niveaux
+﻿namespace Gesc.Api.Dtos.Config.Niveaux
 {
-    public class NiveauGieACreerDto 
-    { 
+    public class NiveauGdcACreerDto 
+    {
         public Guid Id { get; set; }
         public int ValeurCycle { get; set; }
         public string Designation { get; set; }

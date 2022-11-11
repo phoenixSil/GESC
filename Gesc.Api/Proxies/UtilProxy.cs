@@ -9,7 +9,7 @@ namespace Gesc.Api.Proxies
 {
     public static class UtilProxy
     {
-        public static StringContent SerializeRequette(NiveauGieACreerDto dto)
+        public static StringContent SerializeRequette(object dto)
         {
             return new StringContent(
                 JsonSerializer.Serialize(dto),
