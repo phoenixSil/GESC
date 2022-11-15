@@ -1,22 +1,18 @@
-#See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
-
-FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
 WORKDIR /app
-EXPOSE 80
-EXPOSE 443
 
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
-WORKDIR /src
 COPY ["Gesc.Api/Gesc.Api.csproj", "Gesc.Api/"]
 RUN dotnet restore "Gesc.Api/Gesc.Api.csproj"
+
 COPY . .
 WORKDIR "/src/Gesc.Api"
 RUN dotnet build "Gesc.Api.csproj" -c Release -o /app/build
 
-FROM build AS publish
+FROM build-env AS publish
 RUN dotnet publish "Gesc.Api.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
-FROM base AS final
+FROM mcr.microsoft.com/dotnet/aspnet:6.0 
 WORKDIR /app
+
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "Gesc.Api.dll"]
