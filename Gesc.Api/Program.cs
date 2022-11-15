@@ -3,7 +3,6 @@ using Gesc.Api.Extensions;
 using Gesc.Api.GeneralExtensions;
 using Gesc.Api.Datas;
 using Serilog;
-using MsCommun.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,6 +33,7 @@ builder.Services.ConfigureApplicationServices();
 builder.Services.ConfigureControllerServices();
 builder.Services.ConfigurePersistenceServices(builder.Configuration);
 builder.Services.AjoutterCoucheDesProxies(builder.Configuration);
+builder.Services.AddConfigurationMassTransitWithRabbitMQ(builder.Configuration);
 
 
 // Add services to the container.
@@ -58,4 +58,7 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+app.PrepPopulation(builder.Environment.IsProduction());
+
 app.Run();
+

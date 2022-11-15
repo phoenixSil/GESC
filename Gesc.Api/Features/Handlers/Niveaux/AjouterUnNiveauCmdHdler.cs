@@ -10,6 +10,7 @@ using Gesc.Api.Dtos.Niveaus.Validations;
 using Gesc.Api.Dtos.Config.Niveaux;
 using Gesc.Api.Proxies.Contrats;
 using Gesc.Api.Proxies.GdcProxys.Contrats;
+using MassTransit;
 
 namespace Gesc.Api.Features.CommandHandlers.Niveaux
 {
@@ -19,13 +20,15 @@ namespace Gesc.Api.Features.CommandHandlers.Niveaux
         private readonly IMapper _mapper;
         private readonly IGieProxy _gieProxy;
         private readonly IGdcProxy _gdcProxy;
+        private readonly IPublishEndpoint _publishEndPoint;
 
-        public AjouterUnNiveauCmdHdler(IGdcProxy gdcProxy, IGieProxy gieProxy, IMapper mapper, IPointDaccess pointDaccess)
+        public AjouterUnNiveauCmdHdler(IPublishEndpoint publishEndPoint, IGdcProxy gdcProxy, IGieProxy gieProxy, IMapper mapper, IPointDaccess pointDaccess)
         {
             _pointDaccess = pointDaccess;
             _mapper = mapper;
             _gieProxy = gieProxy;
             _gdcProxy = gdcProxy;
+            _publishEndPoint = publishEndPoint;
         }
         public async Task<ReponseDeRequette> Handle(AjouterUnNiveauCmd request, CancellationToken cancellationToken)
         {
@@ -58,10 +61,13 @@ namespace Gesc.Api.Features.CommandHandlers.Niveaux
                     reponse.Id = result.Id;
 
                     // On ajoutte le Niveau dans la Ms Dinscription des Etudiants 
-                    await _gieProxy.AjoutterNiveau(result);
+                    // _gieProxy.AjoutterNiveau(result);
 
                     // on ajoutte le Niveau dans la Ms de Gestion des Cours 
-                    await _gdcProxy.AjoutterNiveau(result);
+                    //await _gdcProxy.AjoutterNiveau(result);
+
+                    // Communication Asynchrone via le Bus Rabbit MQ
+                    _publishEndPoint.Publish(result);
                 }
             }
 
