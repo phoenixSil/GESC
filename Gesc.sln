@@ -3,9 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gesc.Api", "Gesc.Api\Gesc.Api.csproj", "{DCDAC535-2B01-46CC-BACE-8056770A7703}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gesc.Api", "Gesc.Api\Gesc.Api.csproj", "{DCDAC535-2B01-46CC-BACE-8056770A7703}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gesc.Tests", "Gesc.Tests\Gesc.Tests.csproj", "{B9DDCA02-C22B-47E3-BB68-34012625FF65}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gesc.Tests", "Gesc.Tests\Gesc.Tests.csproj", "{B9DDCA02-C22B-47E3-BB68-34012625FF65}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gesc_Sources", "Gesc_Sources", "{DE11D928-CE0A-4EEB-BBDC-90EA7EEED709}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gesc_Tests", "Gesc_Tests", "{15B23066-33BF-4A50-8CAB-284BA111F156}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,6 +28,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DCDAC535-2B01-46CC-BACE-8056770A7703} = {DE11D928-CE0A-4EEB-BBDC-90EA7EEED709}
+		{B9DDCA02-C22B-47E3-BB68-34012625FF65} = {15B23066-33BF-4A50-8CAB-284BA111F156}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3446C490-7ADE-47B8-BB7C-A89AF4C8E30E}
