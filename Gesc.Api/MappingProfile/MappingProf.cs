@@ -5,9 +5,9 @@ using Gesc.Api.Dtos.Config.Ecole;
 using Gesc.Api.Dtos.Config.FiliereCycles;
 using Gesc.Api.Dtos.Config.Filieres;
 using Gesc.Api.Dtos.Config.Niveaux;
-using Gesc.Api.Modeles;
-using Gesc.Api.Modeles.Config;
-using Gesc.Api.Modeles;
+using Gesc.Domain.Modeles;
+using Gesc.Domain.Modeles.Config;
+using Gesc.Domain.Modeles;
 using MsCommun.Messages.Niveaux;
 
 namespace Gesc.Api.MappingProfile

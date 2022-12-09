@@ -1,5 +1,5 @@
-﻿using Gesc.Api.Modeles.Config;
-using Gesc.Api.Modeles;
+﻿using Gesc.Domain.Modeles.Config;
+using Gesc.Domain.Modeles;
 using Gesc.Api.Dtos;
 using Gesc.Api.Dtos.Config.FiliereCycles;
 

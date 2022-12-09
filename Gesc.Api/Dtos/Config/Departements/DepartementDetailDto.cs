@@ -1,6 +1,6 @@
 ﻿using Gesc.Api.Dtos.Config.Ecole;
 using Gesc.Api.Dtos.Config.Filieres;
-using Gesc.Api.Modeles.Config;
+using Gesc.Domain.Modeles.Config;
 using Gesc.Api.Dtos;
 
 namespace Gesc.Api.Dtos.Config.Departements

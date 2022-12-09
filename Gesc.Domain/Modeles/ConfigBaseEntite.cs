@@ -1,6 +1,6 @@
-﻿using Gesc.Api.Modeles;
+﻿using Gesc.Domain.Modeles;
 
-namespace Gesc.Api.Modeles
+namespace Gesc.Domain.Modeles
 {
     public class ConfigBaseEntite : BaseEntite
     {

@@ -2,11 +2,11 @@
 using MediatR;
 using Gesc.Api.Dtos.Ecoles.Validations;
 using Gesc.Api.Features.Commandes.Ecoles;
-using Gesc.Api.Modeles;
+using Gesc.Domain.Modeles;
 using Gesc.Api.Repertoires.Contrats;
 using MsCommun.Reponses;
-using Gesc.Api.Modeles;
-using Gesc.Api.Modeles.Config;
+using Gesc.Domain.Modeles;
+using Gesc.Domain.Modeles.Config;
 
 namespace Gesc.Api.Features.CommandHandlers.Ecoles
 {

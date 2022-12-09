@@ -2,7 +2,7 @@
 using MediatR;
 using Gesc.Api.Dtos.Ecoles;
 using Gesc.Api.Features.Commandes.Ecoles;
-using Gesc.Api.Modeles;
+using Gesc.Domain.Modeles;
 using Gesc.Api.Repertoires.Contrats;
 using Gesc.Api.Dtos.Config.Ecole;
 

@@ -1,4 +1,4 @@
-﻿using Gesc.Api.Modeles.Config;
+﻿using Gesc.Domain.Modeles.Config;
 using Gesc.Api.Repertoires.Contrats;
 using Gesc.Api.Datas;
 using MsCommun.Repertoires;

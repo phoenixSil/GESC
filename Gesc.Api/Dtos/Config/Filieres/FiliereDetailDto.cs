@@ -1,7 +1,7 @@
 ﻿using Gesc.Api.Dtos.Config.Cycles;
 using Gesc.Api.Dtos.Config.Departements;
 using Gesc.Api.Dtos.Config.FiliereCycles;
-using Gesc.Api.Modeles.Config;
+using Gesc.Domain.Modeles.Config;
 using Gesc.Api.Dtos;
 
 namespace Gesc.Api.Dtos.Config.Filieres

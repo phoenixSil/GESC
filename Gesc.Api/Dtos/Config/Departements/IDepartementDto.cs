@@ -1,4 +1,4 @@
-﻿using Gesc.Api.Modeles.Config;
+﻿using Gesc.Domain.Modeles.Config;
 
 namespace Gesc.Api.Dtos.Config.Departements
 {

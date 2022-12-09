@@ -1,5 +1,5 @@
 ﻿using Gesc.Api.Dtos.Config.Niveaux;
-using Gesc.Api.Modeles.Config;
+using Gesc.Domain.Modeles.Config;
 using Newtonsoft.Json;
 using System.Text;
 using System.Text.Json;

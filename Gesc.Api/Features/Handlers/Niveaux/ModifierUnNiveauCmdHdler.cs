@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using Gesc.Api.Features.Commandes.Niveaux;
-using Gesc.Api.Modeles;
+using Gesc.Domain.Modeles;
 using Gesc.Api.Repertoires.Contrats;
 using MsCommun.Reponses;
 using MsCommun.Exceptions;

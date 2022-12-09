@@ -33,4 +33,8 @@
     <Folder Include="Messages\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Gesc.Domain\Gesc.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

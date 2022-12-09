@@ -2,7 +2,7 @@
 using MediatR;
 using Gesc.Api.Dtos.Cycles;
 using Gesc.Api.Features.Commandes.Cycles;
-using Gesc.Api.Modeles;
+using Gesc.Domain.Modeles;
 using Gesc.Api.Repertoires.Contrats;
 using Gesc.Api.Dtos.Config.Cycles;
 

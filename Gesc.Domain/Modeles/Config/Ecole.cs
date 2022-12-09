@@ -1,6 +1,6 @@
-﻿using Gesc.Api.Modeles;
+﻿using Gesc.Domain.Modeles;
 
-namespace Gesc.Api.Modeles.Config
+namespace Gesc.Domain.Modeles.Config
 {
     public class Ecole : ConfigBaseEntite
     {

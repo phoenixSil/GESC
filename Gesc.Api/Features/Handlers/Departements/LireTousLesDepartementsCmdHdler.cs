@@ -2,7 +2,7 @@
 using MediatR;
 using Gesc.Api.Dtos.Departements;
 using Gesc.Api.Features.Commandes.Departements;
-using Gesc.Api.Modeles;
+using Gesc.Domain.Modeles;
 using Gesc.Api.Repertoires.Contrats;
 using Gesc.Api.Dtos.Config.Departements;
 

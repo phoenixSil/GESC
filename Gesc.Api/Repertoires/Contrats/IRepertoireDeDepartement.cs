@@ -1,6 +1,6 @@
 ﻿using Gesc.Api.Dtos.Config.Departements;
-using Gesc.Api.Modeles;
-using Gesc.Api.Modeles.Config;
+using Gesc.Domain.Modeles;
+using Gesc.Domain.Modeles.Config;
 using MsCommun.Repertoires.Contrats;
 
 namespace Gesc.Api.Repertoires.Contrats

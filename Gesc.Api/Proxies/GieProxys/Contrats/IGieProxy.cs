@@ -1,4 +1,4 @@
-﻿using Gesc.Api.Modeles.Config;
+﻿using Gesc.Domain.Modeles.Config;
 using MsCommun.Reponses;
 
 namespace Gesc.Api.Proxies.Contrats

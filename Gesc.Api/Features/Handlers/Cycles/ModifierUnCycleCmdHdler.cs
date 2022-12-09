@@ -4,7 +4,7 @@ using Gesc.Api.Dtos.Cycles;
 using Gesc.Api.Dtos.Cycles;
 using Gesc.Api.Dtos.Cycles.Validations;
 using Gesc.Api.Features.Commandes.Cycles;
-using Gesc.Api.Modeles;
+using Gesc.Domain.Modeles;
 using Gesc.Api.Repertoires.Contrats;
 using MsCommun.Reponses;
 using MsCommun.Exceptions;

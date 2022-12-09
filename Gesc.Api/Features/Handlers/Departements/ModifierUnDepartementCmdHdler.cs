@@ -4,7 +4,7 @@ using Gesc.Api.Dtos.Departements;
 using Gesc.Api.Dtos.Departements;
 using Gesc.Api.Dtos.Departements.Validations;
 using Gesc.Api.Features.Commandes.Departements;
-using Gesc.Api.Modeles;
+using Gesc.Domain.Modeles;
 using Gesc.Api.Repertoires.Contrats;
 using MsCommun.Reponses;
 using MsCommun.Exceptions;

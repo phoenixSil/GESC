@@ -4,7 +4,7 @@ using Gesc.Api.Dtos.Filieres;
 using Gesc.Api.Dtos.Filieres;
 using Gesc.Api.Dtos.Filieres.Validations;
 using Gesc.Api.Features.Commandes.Filieres;
-using Gesc.Api.Modeles;
+using Gesc.Domain.Modeles;
 using Gesc.Api.Repertoires.Contrats;
 using MsCommun.Reponses;
 using MsCommun.Exceptions;

@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Gesc.Api.Datas;
 using Gesc.Api.Dtos.Config.Niveaux;
-using Gesc.Api.Modeles.Config;
+using Gesc.Domain.Modeles.Config;
 using Gesc.Api.Proxies.Contrats;
 using Gesc.Api.Services.Contrats;
 using MsCommun.Reponses;

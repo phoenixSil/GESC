@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
 using MediatR;
 using Gesc.Api.Features.Commandes.Niveaux;
-using Gesc.Api.Modeles;
+using Gesc.Domain.Modeles;
 using Gesc.Api.Repertoires.Contrats;
 using MsCommun.Reponses;
-using Gesc.Api.Modeles;
-using Gesc.Api.Modeles.Config;
+using Gesc.Domain.Modeles;
+using Gesc.Domain.Modeles.Config;
 using Gesc.Api.Dtos.Niveaus.Validations;
 using Gesc.Api.Dtos.Config.Niveaux;
 using Gesc.Api.Proxies.Contrats;

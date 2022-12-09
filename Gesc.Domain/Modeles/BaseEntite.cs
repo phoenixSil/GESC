@@ -1,4 +1,4 @@
-﻿namespace Gesc.Api.Modeles
+﻿namespace Gesc.Domain.Modeles
 {
     public class BaseEntite
     {

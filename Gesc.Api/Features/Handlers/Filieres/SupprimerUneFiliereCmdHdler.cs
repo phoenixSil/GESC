@@ -2,12 +2,12 @@
 using MediatR;
 using Gesc.Api.Dtos.Filieres;
 using Gesc.Api.Features.Commandes.Filieres;
-using Gesc.Api.Modeles;
+using Gesc.Domain.Modeles;
 using Gesc.Api.Repertoires.Contrats;
 using MsCommun.Reponses;
-using Gesc.Api.Modeles;
+using Gesc.Domain.Modeles;
 using MsCommun.Exceptions;
-using Gesc.Api.Modeles.Config;
+using Gesc.Domain.Modeles.Config;
 
 namespace Gesc.Api.Features.CommandHandlers.Filieres
 {

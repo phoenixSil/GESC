@@ -39,7 +39,7 @@ namespace Gesc.Api.Datas.Migrations
                     b.ToTable("CycleFiliere");
                 });
 
-            modelBuilder.Entity("Gesc.Api.Modeles.Config.Cycle", b =>
+            modelBuilder.Entity("Gesc.Domain.Modeles.Config.Cycle", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -68,7 +68,7 @@ namespace Gesc.Api.Datas.Migrations
                     b.ToTable("Cycles");
                 });
 
-            modelBuilder.Entity("Gesc.Api.Modeles.Config.Departement", b =>
+            modelBuilder.Entity("Gesc.Domain.Modeles.Config.Departement", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -102,7 +102,7 @@ namespace Gesc.Api.Datas.Migrations
                     b.ToTable("Departements");
                 });
 
-            modelBuilder.Entity("Gesc.Api.Modeles.Config.Ecole", b =>
+            modelBuilder.Entity("Gesc.Domain.Modeles.Config.Ecole", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -135,7 +135,7 @@ namespace Gesc.Api.Datas.Migrations
                     b.ToTable("Ecoles");
                 });
 
-            modelBuilder.Entity("Gesc.Api.Modeles.Config.Filiere", b =>
+            modelBuilder.Entity("Gesc.Domain.Modeles.Config.Filiere", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -169,7 +169,7 @@ namespace Gesc.Api.Datas.Migrations
                     b.ToTable("Filieres");
                 });
 
-            modelBuilder.Entity("Gesc.Api.Modeles.Config.FiliereCycle", b =>
+            modelBuilder.Entity("Gesc.Domain.Modeles.Config.FiliereCycle", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -196,7 +196,7 @@ namespace Gesc.Api.Datas.Migrations
                     b.ToTable("FiliereCycles");
                 });
 
-            modelBuilder.Entity("Gesc.Api.Modeles.Config.Niveau", b =>
+            modelBuilder.Entity("Gesc.Domain.Modeles.Config.Niveau", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -227,22 +227,22 @@ namespace Gesc.Api.Datas.Migrations
 
             modelBuilder.Entity("CycleFiliere", b =>
                 {
-                    b.HasOne("Gesc.Api.Modeles.Config.Cycle", null)
+                    b.HasOne("Gesc.Domain.Modeles.Config.Cycle", null)
                         .WithMany()
                         .HasForeignKey("CyclesId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Gesc.Api.Modeles.Config.Filiere", null)
+                    b.HasOne("Gesc.Domain.Modeles.Config.Filiere", null)
                         .WithMany()
                         .HasForeignKey("FilieresId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Gesc.Api.Modeles.Config.Departement", b =>
+            modelBuilder.Entity("Gesc.Domain.Modeles.Config.Departement", b =>
                 {
-                    b.HasOne("Gesc.Api.Modeles.Config.Ecole", "Ecole")
+                    b.HasOne("Gesc.Domain.Modeles.Config.Ecole", "Ecole")
                         .WithMany("Departements")
                         .HasForeignKey("EcoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -251,9 +251,9 @@ namespace Gesc.Api.Datas.Migrations
                     b.Navigation("Ecole");
                 });
 
-            modelBuilder.Entity("Gesc.Api.Modeles.Config.Filiere", b =>
+            modelBuilder.Entity("Gesc.Domain.Modeles.Config.Filiere", b =>
                 {
-                    b.HasOne("Gesc.Api.Modeles.Config.Departement", "Departement")
+                    b.HasOne("Gesc.Domain.Modeles.Config.Departement", "Departement")
                         .WithMany("Filieres")
                         .HasForeignKey("DepartementId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -262,15 +262,15 @@ namespace Gesc.Api.Datas.Migrations
                     b.Navigation("Departement");
                 });
 
-            modelBuilder.Entity("Gesc.Api.Modeles.Config.FiliereCycle", b =>
+            modelBuilder.Entity("Gesc.Domain.Modeles.Config.FiliereCycle", b =>
                 {
-                    b.HasOne("Gesc.Api.Modeles.Config.Cycle", "Cycle")
+                    b.HasOne("Gesc.Domain.Modeles.Config.Cycle", "Cycle")
                         .WithMany("FiliereCycles")
                         .HasForeignKey("CycleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Gesc.Api.Modeles.Config.Filiere", "Filiere")
+                    b.HasOne("Gesc.Domain.Modeles.Config.Filiere", "Filiere")
                         .WithMany("FiliereCycles")
                         .HasForeignKey("FiliereId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -281,9 +281,9 @@ namespace Gesc.Api.Datas.Migrations
                     b.Navigation("Filiere");
                 });
 
-            modelBuilder.Entity("Gesc.Api.Modeles.Config.Niveau", b =>
+            modelBuilder.Entity("Gesc.Domain.Modeles.Config.Niveau", b =>
                 {
-                    b.HasOne("Gesc.Api.Modeles.Config.FiliereCycle", "FiliereCycle")
+                    b.HasOne("Gesc.Domain.Modeles.Config.FiliereCycle", "FiliereCycle")
                         .WithMany("Niveaux")
                         .HasForeignKey("FiliereCycleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -292,27 +292,27 @@ namespace Gesc.Api.Datas.Migrations
                     b.Navigation("FiliereCycle");
                 });
 
-            modelBuilder.Entity("Gesc.Api.Modeles.Config.Cycle", b =>
+            modelBuilder.Entity("Gesc.Domain.Modeles.Config.Cycle", b =>
                 {
                     b.Navigation("FiliereCycles");
                 });
 
-            modelBuilder.Entity("Gesc.Api.Modeles.Config.Departement", b =>
+            modelBuilder.Entity("Gesc.Domain.Modeles.Config.Departement", b =>
                 {
                     b.Navigation("Filieres");
                 });
 
-            modelBuilder.Entity("Gesc.Api.Modeles.Config.Ecole", b =>
+            modelBuilder.Entity("Gesc.Domain.Modeles.Config.Ecole", b =>
                 {
                     b.Navigation("Departements");
                 });
 
-            modelBuilder.Entity("Gesc.Api.Modeles.Config.Filiere", b =>
+            modelBuilder.Entity("Gesc.Domain.Modeles.Config.Filiere", b =>
                 {
                     b.Navigation("FiliereCycles");
                 });
 
-            modelBuilder.Entity("Gesc.Api.Modeles.Config.FiliereCycle", b =>
+            modelBuilder.Entity("Gesc.Domain.Modeles.Config.FiliereCycle", b =>
                 {
                     b.Navigation("Niveaux");
                 });

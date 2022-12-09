@@ -1,7 +1,6 @@
-﻿using Gesc.Api.Modeles;
-using Microsoft.Extensions.Hosting;
+﻿using Gesc.Domain.Modeles;
 
-namespace Gesc.Api.Modeles.Config
+namespace Gesc.Domain.Modeles.Config
 {
     public class FiliereCycle : BaseEntite
     {

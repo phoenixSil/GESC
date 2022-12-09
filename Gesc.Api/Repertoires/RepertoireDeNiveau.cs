@@ -1,5 +1,5 @@
-﻿using Gesc.Api.Modeles;
-using Gesc.Api.Modeles.Config;
+﻿using Gesc.Domain.Modeles;
+using Gesc.Domain.Modeles.Config;
 using Gesc.Api.Repertoires.Contrats;
 using Gesc.Api.Datas;
 using Gesc.Api.Repertoires.Contrats;
