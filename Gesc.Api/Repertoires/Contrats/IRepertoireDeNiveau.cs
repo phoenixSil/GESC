@@ -6,5 +6,6 @@ namespace Gesc.Api.Repertoires.Contrats
 {
     public interface IRepertoireDeNiveau : IRepertoireGenerique<Niveau>
     {
+        public Task<Niveau> LireDetail(Guid id);
     }
 }

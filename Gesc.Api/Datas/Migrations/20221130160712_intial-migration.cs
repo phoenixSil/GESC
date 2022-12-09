@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Gesc.Api.Datas.Migrations
 {
-    public partial class initialMigration : Migration
+    public partial class intialmigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

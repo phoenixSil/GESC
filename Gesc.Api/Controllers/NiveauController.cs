@@ -63,6 +63,16 @@ namespace Gesc.Api.Controllers
             var resultat = await _service.ModifierUnNiveau(niveauId, niveauAModifierDto);
             return Ok(resultat);
         }
+
+        [HttpDelete("{niveauId}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<ReponseDeRequette>> SupprimerUnNiveau(Guid niveauId)
+        {
+            var resultat = await _service.SupprimerUnNiveau(niveauId);
+            return Ok(resultat);
+        }
     }
 }
 

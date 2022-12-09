@@ -11,6 +11,7 @@ using Gesc.Api.Dtos.Config.Niveaux;
 using Gesc.Api.Proxies.Contrats;
 using Gesc.Api.Proxies.GdcProxys.Contrats;
 using MassTransit;
+using MsCommun.Messages.Niveaux;
 
 namespace Gesc.Api.Features.CommandHandlers.Niveaux
 {
@@ -60,18 +61,24 @@ namespace Gesc.Api.Features.CommandHandlers.Niveaux
                     reponse.Message = "Ajout de Niveau Reussit";
                     reponse.Id = result.Id;
 
-                    // On ajoutte le Niveau dans la Ms Dinscription des Etudiants 
-                    // _gieProxy.AjoutterNiveau(result);
-
-                    // on ajoutte le Niveau dans la Ms de Gestion des Cours 
-                    //await _gdcProxy.AjoutterNiveau(result);
-
                     // Communication Asynchrone via le Bus Rabbit MQ
-                    _publishEndPoint.Publish(result);
+                    var dto = await GenerateDtoForGieNiveau(result).ConfigureAwait(false);
+                    await _publishEndPoint.Publish(dto).ConfigureAwait(false);
                 }
             }
 
             return reponse;
         }
+
+        #region Private
+
+        private async Task<AjouterNiveauMessage> GenerateDtoForGieNiveau(Niveau niveau)
+        {
+            var niveauDetail = await _pointDaccess.RepertoireDeNiveau.LireDetail(niveau.Id);
+            var niveauMapper = _mapper.Map<AjouterNiveauMessage>(niveauDetail);
+            return niveauMapper;
+        }
+
+        #endregion
     }
 }

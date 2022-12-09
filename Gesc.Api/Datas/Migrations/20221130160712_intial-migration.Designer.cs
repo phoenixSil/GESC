@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Gesc.Api.Datas.Migrations
 {
     [DbContext(typeof(SchoolConfigDbContext))]
-    [Migration("20221114235648_initial-Migration")]
-    partial class initialMigration
+    [Migration("20221130160712_intial-migration")]
+    partial class intialmigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
