@@ -1,5 +1,5 @@
-﻿using Gesc.Api.Dtos.Config.Ecole;
-using Gesc.Api.Services.Contrats;
+﻿using Gesc.Features.Dtos.Config.Ecole;
+using Gesc.Features.Services.Contrats;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MsCommun.Reponses;

@@ -1,10 +1,10 @@
-﻿using Gesc.Api.Dtos.Config.Filieres;
-using Gesc.Api.Services.Contrats;
+﻿using Gesc.Features.Dtos.Config.Filieres;
+using Gesc.Features.Services.Contrats;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MsCommun.Reponses;
 
-namespace Gesc.Api.Controllers
+namespace Gesc.Features.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

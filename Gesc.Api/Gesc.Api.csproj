@@ -30,11 +30,11 @@
 
   <ItemGroup>
     <Folder Include="Controllers\" />
-    <Folder Include="Messages\" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Gesc.Domain\Gesc.Domain.csproj" />
+    <ProjectReference Include="..\Gesc.InjectionDeDependance\Gesc.InjectionDeDependance.csproj" />
   </ItemGroup>
 
 </Project>

@@ -9,7 +9,7 @@
     }
   },
   "profiles": {
-    "Gesc.Api": {
+    "Gesc.Features": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,

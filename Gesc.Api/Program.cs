@@ -1,8 +1,7 @@
 using MsCommun.Extensions;
-using Gesc.Api.Extensions;
-using Gesc.Api.GeneralExtensions;
-using Gesc.Api.Datas;
 using Serilog;
+using Gesc.InjectionDeDependance;
+using Gesc.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,12 +18,7 @@ builder.Logging.AddSerilog(logger);
 Log.Information("GSCE Demmarre demarre ");
 builder.Host.UseSerilog((ctx, lc) => lc.WriteTo.Console().ReadFrom.Configuration(ctx.Configuration));
 
-
-builder.Services.AddSqlServerDbConfiguration<SchoolConfigDbContext>(builder.Configuration);
-builder.Services.ConfigureApplicationServices();
-builder.Services.ConfigureControllerServices();
-builder.Services.ConfigurePersistenceServices(builder.Configuration);
-builder.Services.AjoutterCoucheDesProxies(builder.Configuration);
+builder.Services.AjoutDeToutesLesExtensions(builder.Configuration);
 builder.Services.AddConfigurationMassTransitWithRabbitMQ(builder.Configuration);
 
 
