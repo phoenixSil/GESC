@@ -2,21 +2,17 @@
 using Gesc.Features.Core.Commandes.Niveaux;
 using Gesc.Features.Contrats.Repertoires;
 using MsCommun.Reponses;
+using Gesc.Features.Core.BaseFactoryClass;
+using AutoMapper;
 
 namespace Gesc.Features.Core.CommandHandlers.Niveaux
 {
-    public class SupprimerUnNiveauCmdHdler : IRequestHandler<SupprimerUnNiveauCmd, ReponseDeRequette>
+    public class SupprimerUnNiveauCmdHdler : BaseCommandHandler<SupprimerUnNiveauCmd>
     {
-        private readonly IPointDaccess _pointDaccess;
-        private readonly IMediator _mediator;
+        public SupprimerUnNiveauCmdHdler(IPointDaccess pointDaccess, IMediator mediator, IMapper mapper) : base(pointDaccess, mediator, mapper)
+        { }
 
-        public SupprimerUnNiveauCmdHdler(IPointDaccess pointDaccess, IMediator mediator)
-        {
-            _pointDaccess = pointDaccess;
-            _mediator = mediator;
-        }
-
-        public async Task<ReponseDeRequette> Handle(SupprimerUnNiveauCmd request, CancellationToken cancellationToken)
+        public async override Task<ReponseDeRequette> Handle(SupprimerUnNiveauCmd request, CancellationToken cancellationToken)
         {
             var response = new ReponseDeRequette();
 

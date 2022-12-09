@@ -8,21 +8,16 @@ using MsCommun.Reponses;
 using Gesc.Domain.Modeles;
 using MsCommun.Exceptions;
 using Gesc.Domain.Modeles.Config;
+using Gesc.Features.Core.BaseFactoryClass;
 
 namespace Gesc.Features.Core.CommandHandlers.Departements
 {
-    public class SupprimerUnDepartementCmdHdler : IRequestHandler<SupprimerUnDepartementCmd, ReponseDeRequette>
+    public class SupprimerUnDepartementCmdHdler : BaseCommandHandler<SupprimerUnDepartementCmd>
     {
-        private readonly IPointDaccess _pointDaccess;
-        private readonly IMediator _mediator;
+        public SupprimerUnDepartementCmdHdler(IPointDaccess pointDaccess, IMediator mediator, IMapper mapper) : base(pointDaccess, mediator, mapper)
+        { }
 
-        public SupprimerUnDepartementCmdHdler(IPointDaccess pointDaccess, IMediator mediator)
-        {
-            _pointDaccess = pointDaccess;
-            _mediator = mediator;
-        }
-
-        public async Task<ReponseDeRequette> Handle(SupprimerUnDepartementCmd request, CancellationToken cancellationToken)
+        public async override Task<ReponseDeRequette> Handle(SupprimerUnDepartementCmd request, CancellationToken cancellationToken)
         {
             var response = new ReponseDeRequette();
 

@@ -8,22 +8,17 @@ using Gesc.Domain.Modeles;
 using Gesc.Features.Contrats.Repertoires;
 using MsCommun.Reponses;
 using MsCommun.Exceptions;
+using Gesc.Features.Core.BaseFactoryClass;
 
 namespace Gesc.Features.Core.CommandHandlers.Filieres
 {
-    public class ModifierUneFiliereCmdHdler : IRequestHandler<ModifierUneFiliereCmd, ReponseDeRequette>
+    public class ModifierUneFiliereCmdHdler : BaseCommandHandler<ModifierUneFiliereCmd>
     {
-        private readonly IPointDaccess _pointDaccess;
-        private readonly IMediator _mediator;
-        private readonly IMapper _mapper;
-
-        public ModifierUneFiliereCmdHdler(IPointDaccess pointDaccess, IMediator mediator, IMapper mapper)
+        public ModifierUneFiliereCmdHdler(IPointDaccess pointDaccess, IMediator mediator, IMapper mapper) : base(pointDaccess, mediator, mapper)
         {
-            _pointDaccess = pointDaccess;
-            _mediator = mediator;
-            _mapper = mapper;
         }
-        public async Task<ReponseDeRequette> Handle(ModifierUneFiliereCmd request, CancellationToken cancellationToken)
+
+        public async override Task<ReponseDeRequette> Handle(ModifierUneFiliereCmd request, CancellationToken cancellationToken)
         {
             var filiere = await _pointDaccess.RepertoireDeFiliere.Lire(request.FiliereId);
 

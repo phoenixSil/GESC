@@ -1,29 +1,21 @@
 ﻿using AutoMapper;
 using MediatR;
-using Gesc.Features.Dtos.Ecoles;
-using Gesc.Features.Dtos.Ecoles;
 using Gesc.Features.Dtos.Ecoles.Validations;
 using Gesc.Features.Core.Commandes.Ecoles;
-using Gesc.Domain.Modeles;
 using Gesc.Features.Contrats.Repertoires;
 using MsCommun.Reponses;
 using MsCommun.Exceptions;
+using Gesc.Features.Core.BaseFactoryClass;
 
 namespace Gesc.Features.Core.CommandHandlers.Ecoles
 {
-    public class ModifierUneEcoleCmdHdler : IRequestHandler<ModifierUneEcoleCmd, ReponseDeRequette>
+    public class ModifierUneEcoleCmdHdler : BaseCommandHandler<ModifierUneEcoleCmd>
     {
-        private readonly IPointDaccess _pointDaccess;
-        private readonly IMediator _mediator;
-        private readonly IMapper _mapper;
-
-        public ModifierUneEcoleCmdHdler(IPointDaccess pointDaccess, IMediator mediator, IMapper mapper)
+        public ModifierUneEcoleCmdHdler(IPointDaccess pointDaccess, IMediator mediator, IMapper mapper) : base(pointDaccess, mediator, mapper)
         {
-            _pointDaccess = pointDaccess;
-            _mediator = mediator;
-            _mapper = mapper;
         }
-        public async Task<ReponseDeRequette> Handle(ModifierUneEcoleCmd request, CancellationToken cancellationToken)
+
+        public async override Task<ReponseDeRequette> Handle(ModifierUneEcoleCmd request, CancellationToken cancellationToken)
         {
             var ecole = await _pointDaccess.RepertoireDecole.Lire(request.EcoleId);
 

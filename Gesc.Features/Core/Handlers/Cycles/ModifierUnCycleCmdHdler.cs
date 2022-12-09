@@ -2,26 +2,23 @@
 using MediatR;
 using Gesc.Features.Dtos.Cycles;
 using Gesc.Features.Dtos.Cycles;
-using Gesc.Features.Dtos.Cycles.Validations;
+using Gesc.Features.Dtos.Cycles.Validations; using Gesc.Features.Dtos.Niveaus.Validations;
 using Gesc.Features.Core.Commandes.Cycles;
 using Gesc.Domain.Modeles;
 using Gesc.Features.Contrats.Repertoires;
 using MsCommun.Reponses;
 using MsCommun.Exceptions;
+using Gesc.Features.Core.BaseFactoryClass;
 
 namespace Gesc.Features.Core.CommandHandlers.Cycles
 {
-    public class ModifierUnCycleCmdHdler : IRequestHandler<ModifierUnCycleCmd, ReponseDeRequette>
+    public class ModifierUnCycleCmdHdler : BaseCommandHandler<ModifierUnCycleCmd>
     {
-        private readonly IPointDaccess _pointDaccess;
-        private readonly IMapper _mapper;
 
-        public ModifierUnCycleCmdHdler(IPointDaccess pointDaccess, IMapper mapper)
-        {
-            _pointDaccess = pointDaccess;
-            _mapper = mapper;
-        }
-        public async Task<ReponseDeRequette> Handle(ModifierUnCycleCmd request, CancellationToken cancellationToken)
+        public ModifierUnCycleCmdHdler(IPointDaccess pointDaccess, IMediator mediator, IMapper mapper) : base(pointDaccess, mediator, mapper)
+        { }
+
+        public async override Task<ReponseDeRequette> Handle(ModifierUnCycleCmd request, CancellationToken cancellationToken)
         {
             var cycle = await _pointDaccess.RepertoireDeCycle.Lire(request.CycleId);
 

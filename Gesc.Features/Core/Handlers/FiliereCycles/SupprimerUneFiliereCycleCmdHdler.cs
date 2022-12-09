@@ -8,21 +8,16 @@ using MsCommun.Reponses;
 using Gesc.Domain.Modeles;
 using MsCommun.Exceptions;
 using Gesc.Domain.Modeles.Config;
+using Gesc.Features.Core.BaseFactoryClass;
 
 namespace Gesc.Features.Core.CommandHandlers.FiliereCycles
 {
-    public class SupprimerUneFiliereCycleCmdHdler : IRequestHandler<SupprimerUneFiliereCycleCmd, ReponseDeRequette>
+    public class SupprimerUneFiliereCycleCmdHdler : BaseCommandHandler<SupprimerUneFiliereCycleCmd>
     {
-        private readonly IPointDaccess _pointDaccess;
-        private readonly IMediator _mediator;
+        public SupprimerUneFiliereCycleCmdHdler(IPointDaccess pointDaccess, IMediator mediator, IMapper mapper) : base(pointDaccess, mediator, mapper)
+        { }
 
-        public SupprimerUneFiliereCycleCmdHdler(IPointDaccess pointDaccess, IMediator mediator)
-        {
-            _pointDaccess = pointDaccess;
-            _mediator = mediator;
-        }
-
-        public async Task<ReponseDeRequette> Handle(SupprimerUneFiliereCycleCmd request, CancellationToken cancellationToken)
+        public async override Task<ReponseDeRequette> Handle(SupprimerUneFiliereCycleCmd request, CancellationToken cancellationToken)
         {
             var response = new ReponseDeRequette();
 

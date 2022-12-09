@@ -2,10 +2,11 @@
 using MediatR;
 using Gesc.Features.Dtos.Filieres;
 using MsCommun.Reponses;
+using Gesc.Features.Core.BaseFactoryClass;
 
 namespace Gesc.Features.Core.Commandes.Filieres
 {
-    public class AjouterUneFiliereCmd : IRequest<ReponseDeRequette>
+    public class AjouterUneFiliereCmd : BaseCommand
     {
         public FiliereACreerDto FiliereAAjouterDto { get; set; }
     }

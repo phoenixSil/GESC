@@ -5,23 +5,18 @@ using Gesc.Domain.Modeles;
 using Gesc.Features.Contrats.Repertoires;
 using MsCommun.Reponses;
 using MsCommun.Exceptions;
-using Gesc.Features.Dtos.Niveaus.Validations;
+using Gesc.Features.Dtos.Niveaus.Validations; 
+using Gesc.Features.Core.BaseFactoryClass;
 
 namespace Gesc.Features.Core.CommandHandlers.Niveaux
 {
-    public class ModifierUnNiveauCmdHdler : IRequestHandler<ModifierUnNiveauCmd, ReponseDeRequette>
+    public class ModifierUnNiveauCmdHdler : BaseCommandHandler<ModifierUnNiveauCmd>
     {
-        private readonly IPointDaccess _pointDaccess;
-        private readonly IMediator _mediator;
-        private readonly IMapper _mapper;
-
-        public ModifierUnNiveauCmdHdler(IPointDaccess pointDaccess, IMediator mediator, IMapper mapper)
+        public ModifierUnNiveauCmdHdler(IPointDaccess pointDaccess, IMediator mediator, IMapper mapper) : base(pointDaccess, mediator, mapper)
         {
-            _pointDaccess = pointDaccess;
-            _mediator = mediator;
-            _mapper = mapper;
         }
-        public async Task<ReponseDeRequette> Handle(ModifierUnNiveauCmd request, CancellationToken cancellationToken)
+
+        public async override Task<ReponseDeRequette> Handle(ModifierUnNiveauCmd request, CancellationToken cancellationToken)
         {
             var niveau = await _pointDaccess.RepertoireDeNiveau.Lire(request.NiveauId);
 

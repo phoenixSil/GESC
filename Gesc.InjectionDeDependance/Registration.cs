@@ -1,7 +1,6 @@
-﻿using Gesc.Api.GeneralExtensions;
-using Gesc.Application;
+﻿using Gesc.Application;
 using Gesc.Data;
-using Gesc.Features.Extensions;
+using Gesc.Features;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;

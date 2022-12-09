@@ -2,10 +2,11 @@
 using MediatR;
 using Gesc.Features.Dtos.Ecoles;
 using MsCommun.Reponses;
+using Gesc.Features.Core.BaseFactoryClass;
 
 namespace Gesc.Features.Core.Commandes.Ecoles
 {
-    public class AjouterUneEcoleCmd : IRequest<ReponseDeRequette>
+    public class AjouterUneEcoleCmd : BaseCommand
     {
         public EcoleACreerDto EcoleAAjouterDto { get; set; }
     }

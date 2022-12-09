@@ -1,6 +1,4 @@
-﻿using Gesc.Data.Repertoires;
-using Gesc.Features.Contrats.Repertoires;
-using Gesc.Features.Contrats.Repertoires;
+﻿using Gesc.Features.Contrats.Repertoires;
 using Gesc.Data.Context;
 
 namespace Gesc.Data.Repertoires

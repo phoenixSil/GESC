@@ -10,22 +10,17 @@ using Gesc.Features.Dtos.Niveaus.Validations;
 using Gesc.Features.Dtos.Config.Niveaux;
 using MassTransit;
 using MsCommun.Messages.Niveaux;
+using Gesc.Features.Core.BaseFactoryClass;
 
 namespace Gesc.Features.Core.CommandHandlers.Niveaux
 {
-    public class AjouterUnNiveauCmdHdler : IRequestHandler<AjouterUnNiveauCmd, ReponseDeRequette>
+    public class AjouterUnNiveauCmdHdler : BaseCommandHandler<AjouterUnNiveauCmd>
     {
-        private readonly IPointDaccess _pointDaccess;
-        private readonly IMapper _mapper;
-        private readonly IPublishEndpoint _publishEndPoint;
+        public AjouterUnNiveauCmdHdler(IPointDaccess pointDaccess, IMediator mediator, IMapper mapper) : base(pointDaccess, mediator, mapper)
+    {
+    }
 
-        public AjouterUnNiveauCmdHdler(IPublishEndpoint publishEndPoint, IMapper mapper, IPointDaccess pointDaccess)
-        {
-            _pointDaccess = pointDaccess;
-            _mapper = mapper;
-            _publishEndPoint = publishEndPoint;
-        }
-        public async Task<ReponseDeRequette> Handle(AjouterUnNiveauCmd request, CancellationToken cancellationToken)
+    public async override Task<ReponseDeRequette> Handle(AjouterUnNiveauCmd request, CancellationToken cancellationToken)
         {
             var reponse = new ReponseDeRequette();
             var validateur = new ValidateurDeLaCreationDeNiveauDto(_pointDaccess);
@@ -57,7 +52,7 @@ namespace Gesc.Features.Core.CommandHandlers.Niveaux
 
                     // Communication Asynchrone via le Bus Rabbit MQ
                     var dto = await GenerateDtoForGieNiveau(result).ConfigureAwait(false);
-                    await _publishEndPoint.Publish(dto).ConfigureAwait(false);
+                    //await _publishEndPoint.Publish(dto).ConfigureAwait(false);
                 }
             }
 

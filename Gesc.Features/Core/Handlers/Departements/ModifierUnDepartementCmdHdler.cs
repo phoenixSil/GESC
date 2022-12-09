@@ -2,28 +2,23 @@
 using MediatR;
 using Gesc.Features.Dtos.Departements;
 using Gesc.Features.Dtos.Departements;
-using Gesc.Features.Dtos.Departements.Validations;
+using Gesc.Features.Dtos.Departements.Validations; using Gesc.Features.Dtos.Niveaus.Validations;
 using Gesc.Features.Core.Commandes.Departements;
 using Gesc.Domain.Modeles;
 using Gesc.Features.Contrats.Repertoires;
 using MsCommun.Reponses;
 using MsCommun.Exceptions;
+using Gesc.Features.Core.BaseFactoryClass;
 
 namespace Gesc.Features.Core.CommandHandlers.Departements
 {
-    public class ModifierUnDepartementCmdHdler : IRequestHandler<ModifierUnDepartementCmd, ReponseDeRequette>
+    public class ModifierUnDepartementCmdHdler : BaseCommandHandler<ModifierUnDepartementCmd>
     {
-        private readonly IPointDaccess _pointDaccess;
-        private readonly IMediator _mediator;
-        private readonly IMapper _mapper;
-
-        public ModifierUnDepartementCmdHdler(IPointDaccess pointDaccess, IMediator mediator, IMapper mapper)
+        public ModifierUnDepartementCmdHdler(IPointDaccess pointDaccess, IMediator mediator, IMapper mapper) : base(pointDaccess, mediator, mapper)
         {
-            _pointDaccess = pointDaccess;
-            _mediator = mediator;
-            _mapper = mapper;
         }
-        public async Task<ReponseDeRequette> Handle(ModifierUnDepartementCmd request, CancellationToken cancellationToken)
+
+        public async override Task<ReponseDeRequette> Handle(ModifierUnDepartementCmd request, CancellationToken cancellationToken)
         {
             var departement = await _pointDaccess.RepertoireDeDepartement.Lire(request.DepartementId);
 

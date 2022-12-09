@@ -7,7 +7,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Gesc.Api.GeneralExtensions
+namespace Gesc.Features
 {
     public static class ApplicationServiceRegistration
     {

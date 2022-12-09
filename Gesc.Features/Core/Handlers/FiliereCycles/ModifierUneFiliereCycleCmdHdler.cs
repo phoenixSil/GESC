@@ -2,26 +2,23 @@
 using MediatR;
 using Gesc.Features.Dtos.FiliereCycles;
 using Gesc.Features.Dtos.FiliereCycles;
-using Gesc.Features.Dtos.FiliereCycles.Validations;
+using Gesc.Features.Dtos.FiliereCycles.Validations; 
 using Gesc.Features.Core.Commandes.FiliereCycles;
 using Gesc.Domain.Modeles;
 using Gesc.Features.Contrats.Repertoires;
 using MsCommun.Reponses;
 using MsCommun.Exceptions;
+using Gesc.Features.Core.BaseFactoryClass;
 
 namespace Gesc.Features.Core.CommandHandlers.FiliereCycles
 {
-    public class ModifierUneFiliereCycleCmdHdler : IRequestHandler<ModifierUneFiliereCycleCmd, ReponseDeRequette>
+    public class ModifierUneFiliereCycleCmdHdler : BaseCommandHandler<ModifierUneFiliereCycleCmd>
     {
-        private readonly IPointDaccess _pointDaccess;
-        private readonly IMapper _mapper;
-
-        public ModifierUneFiliereCycleCmdHdler(IPointDaccess pointDaccess, IMapper mapper)
+        public ModifierUneFiliereCycleCmdHdler(IPointDaccess pointDaccess, IMediator mediator, IMapper mapper) : base(pointDaccess, mediator, mapper)
         {
-            _pointDaccess = pointDaccess;
-            _mapper = mapper;
         }
-        public async Task<ReponseDeRequette> Handle(ModifierUneFiliereCycleCmd request, CancellationToken cancellationToken)
+
+        public async override Task<ReponseDeRequette> Handle(ModifierUneFiliereCycleCmd request, CancellationToken cancellationToken)
         {
             var filiereCycle = await _pointDaccess.RepertoireDeFiliereCycle.Lire(request.FiliereCycleId);
 
