@@ -16,7 +16,7 @@ WORKDIR "/src/Gesc.Api"
 RUN dotnet build "Gesc.Api.csproj" -c Release -o /app/build
 
 FROM build-env AS publish
-RUN dotnet publish "Gesc.Api.csproj" -c Release -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "Gesc.Api/Gesc.Api.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
 
 FROM mcr.microsoft.com/dotnet/aspnet:6.0 
