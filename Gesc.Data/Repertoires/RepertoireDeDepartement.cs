@@ -28,7 +28,7 @@ namespace Gesc.Data.Repertoires
         public async Task<List<Departement>> LireDepartementDuneEcole(Guid ecoleId)
         {
             var departements = await _context.Departements
-                                .Where(x => x.EcoleId.CompareTo(ecoleId) == 0)
+                                .Where(x => x.EcoleId == ecoleId)
                                 .ToListAsync().ConfigureAwait(false);
             return departements;
         }

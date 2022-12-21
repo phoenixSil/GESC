@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Gesc.Features.Contrats.Repertoires;
 using MediatR;
+using Microsoft.Extensions.Logging;
 using MsCommun.Reponses;
 using System;
 using System.Collections.Generic;
