@@ -16,7 +16,7 @@ using Moq;
 using MsCommun.Reponses;
 using MsCommun.Utils;
 
-namespace Gesc.Tests
+namespace Gesc.Tests.Handlers.Ecoles
 {
     public class AjouterEcoleCmdHandlerTests
     {
@@ -27,6 +27,7 @@ namespace Gesc.Tests
         private readonly AjouterUneEcoleCmdHdler _handler;
         private SchoolConfigDbContext _context;
         private readonly RepertoireDecole _repertoire;
+        private readonly Guid ecoleId;
 
 
         public AjouterEcoleCmdHandlerTests()
@@ -45,11 +46,12 @@ namespace Gesc.Tests
             var config = new MapperConfiguration(
                 configure => { configure.AddProfile<MappingProf>(); });
             _mapper = config.CreateMapper();
+            ecoleId = Guid.NewGuid();
             _handler = new AjouterUneEcoleCmdHdler(_logger.Object, _pointDaccess.Object, _mediator.Object, _mapper);
             _repertoire = new RepertoireDecole(_context);
         }
 
-        [Fact] 
+        [Fact]
         public async Task Handle_DoitBienAjouterUneEcoleALaBase()
         {
             var ecole = new EcoleACreerDto
@@ -79,13 +81,40 @@ namespace Gesc.Tests
             resultat.Should().NotBeNull();
             resultat.Should().BeOfType<ReponseDeRequette>();
             resultat.Success.Should().BeTrue();
+            resultat.Id.Should().NotBeEmpty();
+
+            // _logger.CustomVerify(LogLevel.Information, Times.AtLeast(3));
+        }
+
+        [Fact]
+        public async Task Handle_DoitRenvoyerUnResultatSuccessFalseSiLajoutNapaMarcher()
+        {
+            var ecole = new EcoleACreerDto
+            {
+                Cygle = "C",
+                Description = "description",
+                Designation = "la designation",
+                Specialite = "la specialite"
+            };
+
+            var request = new AjouterUneEcoleCmd
+            {
+                EcoleAAjouterDto = ecole
+            };
+
+            var resultat = await _handler.Handle(request, CancellationToken.None).ConfigureAwait(false);
+            resultat.Should().NotBeNull();
+            resultat.Should().BeOfType<ReponseDeRequette>();
+            resultat.Success.Should().BeFalse();
+            resultat.Message.Should().BeEquivalentTo("Echec de Lajout dune Ecole ");
+            resultat.Errors.Should().NotBeNull();
 
             // _logger.CustomVerify(LogLevel.Information, Times.AtLeast(3));
         }
 
         #region PRIVATE FONCTION CLASS
 
-     
+
 
         private async Task AjoutterLesDonneesEnMemoire()
         {

@@ -34,7 +34,7 @@ namespace Gesc.Features.Core.CommandHandlers.Ecoles
             {
                 _logger.LogError("les donnees entrees ne sont pas valides !!!", JsonConvert.SerializeObject(request.EcoleAAjouterDto));
                 reponse.Success = false;
-                reponse.Message = "Echec de Lajout dune Ecole a la personne donc l'Id est notee dans le champs d'Id";
+                reponse.Message = "Echec de Lajout dune Ecole ";
                 reponse.Errors = resultatValidation.Errors.Select(q => q.ErrorMessage).ToList();
             }
             else
