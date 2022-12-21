@@ -152,7 +152,7 @@ namespace Gesc.Tests.Repertoires
 
             resultat.Should().NotBeNull();
             resultat.Should().BeOfType<List<Ecole>>();
-            resultat.Count().Should().Be(2);
+            resultat.Count().Should().BeGreaterThanOrEqualTo(2);
         }
 
         [Fact]

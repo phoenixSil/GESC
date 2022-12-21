@@ -114,8 +114,6 @@ namespace Gesc.Tests.Handlers.Ecoles
 
         #region PRIVATE FONCTION CLASS
 
-
-
         private async Task AjoutterLesDonneesEnMemoire()
         {
             var ecole = new Ecole
