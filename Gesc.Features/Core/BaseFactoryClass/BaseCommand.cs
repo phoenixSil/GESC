@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using Gesc.Features.Core.BaseFactoryClass.Enums;
+using MediatR;
 using MsCommun.Reponses;
 using System;
 using System.Collections.Generic;
@@ -10,5 +11,6 @@ namespace Gesc.Features.Core.BaseFactoryClass
 {
     public abstract class BaseCommand : IRequest<ReponseDeRequette>
     {
+        public TypeDeRequette Operation { get; set; }
     }
 }
