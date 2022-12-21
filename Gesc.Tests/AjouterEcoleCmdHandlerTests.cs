@@ -14,13 +14,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Moq;
 using MsCommun.Reponses;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+using MsCommun.Utils;
 
 namespace Gesc.Tests
 {
@@ -86,20 +80,12 @@ namespace Gesc.Tests
             resultat.Should().BeOfType<ReponseDeRequette>();
             resultat.Success.Should().BeTrue();
 
-            //_logger.CustomVerify(LogLevel.Information, Times.AtLeast(3));
+            // _logger.CustomVerify(LogLevel.Information, Times.AtLeast(3));
         }
 
         #region PRIVATE FONCTION CLASS
 
-        //private static void CustomVerify<T>(this Mock<ILogger<T>> mock, LogLevel level, Times times)
-        //{
-        //    Mock.Verify(Verify<T>(level), times);
-        //}
-
-        //private static Expression<Action<ILogger<T>>> Verify(LogLevel level)
-        //{
-        //    return (ILogger<T> x) => x.Log(It.Is((LogLevel l) => (int)l == (int)level), It.IsAny<EventId>(), It.Is<It.IsAnyType>((object v, Type t) => true), It.IsAny<Exception>(), It.Is<Func<It.IsAnyType, Exception, string>>((object v, Type t) => true));
-        //}
+     
 
         private async Task AjoutterLesDonneesEnMemoire()
         {
