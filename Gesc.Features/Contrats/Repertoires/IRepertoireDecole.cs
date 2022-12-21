@@ -6,5 +6,6 @@ namespace Gesc.Features.Contrats.Repertoires
 {
     public interface IRepertoireDecole : IRepertoireGenerique<Ecole>
     {
+       
     }
 }

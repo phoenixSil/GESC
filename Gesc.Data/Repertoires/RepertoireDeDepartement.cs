@@ -16,13 +16,21 @@ namespace Gesc.Data.Repertoires
 
         public async Task<Departement> LireDetailDepartement(Guid id)
         {
-            var departement = _context.Departements
+            var departement = await _context.Departements
                                 .Where(x => x.Id.CompareTo(id) == 0)
                                 .Include(y => y.Ecole)
                                 .Include(z => z.Filieres)
-                                .FirstOrDefault();
+                                .SingleOrDefaultAsync().ConfigureAwait(false);
 
             return departement;
+        }
+
+        public async Task<List<Departement>> LireDepartementDuneEcole(Guid ecoleId)
+        {
+            var departements = await _context.Departements
+                                .Where(x => x.EcoleId.CompareTo(ecoleId) == 0)
+                                .ToListAsync().ConfigureAwait(false);
+            return departements;
         }
     }
 }

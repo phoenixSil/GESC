@@ -7,5 +7,6 @@ namespace Gesc.Features.Contrats.Repertoires
     public interface IRepertoireDeDepartement : IRepertoireGenerique<Departement>
     {
         public Task<Departement> LireDetailDepartement(Guid id);
+        public Task<List<Departement>> LireDepartementDuneEcole(Guid ecoleId);
     }
 }
