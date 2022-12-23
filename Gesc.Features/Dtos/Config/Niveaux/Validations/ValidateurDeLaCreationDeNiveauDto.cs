@@ -21,7 +21,7 @@ namespace Gesc.Features.Dtos.Niveaus.Validations
                 var filiereCycleExists = await _pointDaccess.RepertoireDeFiliereCycle.CustomExists(id);
                 return filiereCycleExists;
             })
-         .WithMessage($" la filiereCycle vise nexiste pas dans la base de donnees  ");
+            .WithMessage($" la filiereCycle vise nexiste pas dans la base de donnees  ");
             Include(new ValidateurDeDtoDeNiveau());
         }
     }
