@@ -46,7 +46,16 @@ namespace Gesc.Features.MappingProfile
             CreateMap<Niveau, NiveauACreerDto>().ReverseMap();
             CreateMap<Niveau, NiveauDetailDto>().ReverseMap();
             CreateMap<Niveau, NiveauAModifierDto>().ReverseMap();
-            CreateMap<NiveauACreerDto, NiveauAModifierDto>().ReverseMap();
+            CreateMap<Niveau, NiveauAModifierMessage>()
+                .ForMember(dest => dest.DesignationFiliere,
+                            opt => opt.MapFrom(
+                            src => src.FiliereCycle.Filiere.Designation))
+                .ForMember(dest => dest.DesignationCycle,
+                            opt => opt.MapFrom(
+                            src => src.FiliereCycle.Cycle.Designation))
+                .ForMember(dest => dest.NumeroExterne,
+                            opt => opt.MapFrom(
+                           src => src.Id));
             CreateMap<Niveau, NiveauACreerMessage>()
                 .ForMember(dest => dest.DesignationFiliere,
                             opt => opt.MapFrom(

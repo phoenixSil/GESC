@@ -1,18 +1,14 @@
 ﻿using AutoMapper;
 using MediatR;
 using Gesc.Features.Core.Commandes.Niveaux;
-using Gesc.Domain.Modeles;
 using Gesc.Features.Contrats.Repertoires;
 using MsCommun.Reponses;
-using Gesc.Domain.Modeles;
 using Gesc.Domain.Modeles.Config;
 using Gesc.Features.Dtos.Niveaus.Validations;
-using Gesc.Features.Dtos.Config.Niveaux;
 using MassTransit;
 using MsCommun.Messages.Niveaux;
 using Gesc.Features.Core.BaseFactoryClass;
 using MsCommun.Messages.Utils;
-using Castle.Core.Logging;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 
@@ -49,7 +45,7 @@ namespace Gesc.Features.Core.CommandHandlers.Niveaux
                 var niveauACreer = _mapper.Map<Niveau>(request.NiveauAAjouterDto);
                 niveauACreer.Id = Guid.NewGuid();
 
-                if(_pointDaccess.RepertoireDeNiveau.PeuxAjoutter(niveauACreer))
+                if(!_pointDaccess.RepertoireDeNiveau.PeuxAjoutter(niveauACreer))
                 {
                     reponse.Success = false;
                     reponse.Message = "le Cycle est deja complet ou contient deja un niveau ayant la meme valeur ";
