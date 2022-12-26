@@ -44,7 +44,5 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.PrepPopulation(builder.Environment.IsProduction());
-
 app.Run();
 
