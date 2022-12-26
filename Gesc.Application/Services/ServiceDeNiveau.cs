@@ -41,7 +41,7 @@ namespace Gesc.Api.Services
         public async Task<ReponseDeRequette> ModifierUnNiveau(Guid niveauId, NiveauAModifierDto niveauAModifier)
         {
 
-            var resultatNiveauAModifier = await _mediator.Send(new ModifierUnNiveauCmd { NiveauAModifierDto = niveauAModifier });
+            var resultatNiveauAModifier = await _mediator.Send(new ModifierUnNiveauCmd { NiveauId = niveauId, NiveauAModifierDto = niveauAModifier });
             return resultatNiveauAModifier;
         }
     }

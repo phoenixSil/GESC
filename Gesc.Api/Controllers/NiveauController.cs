@@ -4,6 +4,7 @@ using Gesc.Features.Services.Contrats;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MsCommun.Reponses;
+using Polly.Caching;
 
 namespace Gesc.Features.Controllers
 {
@@ -23,7 +24,7 @@ namespace Gesc.Features.Controllers
         public async Task<ActionResult<ReponseDeRequette>> AjouterUnNiveau(NiveauACreerDto niveauAAjouterDto)
         {
             var result = await _service.AjouterUnNiveau(niveauAAjouterDto);
-            return Ok(result);
+            return StatusCode(result.StatusCode, result);
         }
 
         [HttpGet]
@@ -58,10 +59,10 @@ namespace Gesc.Features.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<ReponseDeRequette>> ModifierUnNiveau(Guid niveauId, NiveauAModifierDto niveauAModifierDto)
+        public async Task<ActionResult<ReponseDeRequette>> ModifierUnNiveau(Guid id, NiveauAModifierDto niveauAModifierDto)
         {
-            var resultat = await _service.ModifierUnNiveau(niveauId, niveauAModifierDto);
-            return Ok(resultat);
+            var resultat = await _service.ModifierUnNiveau(id, niveauAModifierDto);
+            return StatusCode(resultat.StatusCode, resultat);
         }
 
         [HttpDelete("{niveauId}")]
@@ -71,7 +72,7 @@ namespace Gesc.Features.Controllers
         public async Task<ActionResult<ReponseDeRequette>> SupprimerUnNiveau(Guid niveauId)
         {
             var resultat = await _service.SupprimerUnNiveau(niveauId);
-            return Ok(resultat);
+            return StatusCode(resultat.StatusCode, resultat);
         }
     }
 }

@@ -19,7 +19,7 @@ namespace Gesc.Features.Core.CommandHandlers.Niveaux
 
         public async Task<NiveauDetailDto> Handle(LireDetailDUnNiveauCmd request, CancellationToken cancellationToken)
         {
-            var niveau = await _pointDaccess.RepertoireDeNiveau.Lire(request.Id);
+            var niveau = await _pointDaccess.RepertoireDeNiveau.LireDetail(request.Id);
             var NiveauDetail = _mapper.Map<NiveauDetailDto>(niveau);
 
             return NiveauDetail;

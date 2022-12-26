@@ -3,6 +3,7 @@ using Gesc.Features.Services.Contrats;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MsCommun.Reponses;
+using Polly.Caching;
 
 namespace Gesc.Features.Controllers
 {
@@ -22,7 +23,7 @@ namespace Gesc.Features.Controllers
         public async Task<ActionResult<ReponseDeRequette>> AjouterUneFiliereCycle(FiliereCycleACreerDto filiereCycleAAjouterDto)
         {
             var result = await _service.AjouterUneFiliereCycle(filiereCycleAAjouterDto);
-            return Ok(result);
+            return StatusCode(result.StatusCode, result);
         }
 
         [HttpGet]
@@ -57,10 +58,20 @@ namespace Gesc.Features.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<ReponseDeRequette>> ModifierUneFiliereCycle(Guid filiereCycleId, FiliereCycleAModifierDto filiereCycleAModifierDto)
+        public async Task<ActionResult<ReponseDeRequette>> ModifierUneFiliereCycle(Guid id, FiliereCycleAModifierDto filiereCycleAModifierDto)
         {
-            var resultat = await _service.ModifierUneFiliereCycle(filiereCycleId, filiereCycleAModifierDto);
-            return Ok(resultat);
+            var resultat = await _service.ModifierUneFiliereCycle(id, filiereCycleAModifierDto);
+            return StatusCode(resultat.StatusCode, resultat);
+        }
+
+        [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<ReponseDeRequette>> SupprimerUneFiliereCycle(Guid id)
+        {
+            var resultat = await _service.SupprimerUneFiliereCycle(id);
+            return StatusCode(resultat.StatusCode, resultat);
         }
     }
 }

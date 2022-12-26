@@ -3,6 +3,7 @@ using Gesc.Features.Services.Contrats;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MsCommun.Reponses;
+using Polly.Caching;
 
 namespace Gesc.Features.Controllers
 {
@@ -22,7 +23,7 @@ namespace Gesc.Features.Controllers
         public async Task<ActionResult<ReponseDeRequette>> AjouterUneFiliere(FiliereACreerDto filiereAAjouterDto)
         {
             var result = await _service.AjouterUneFiliere(filiereAAjouterDto);
-            return Ok(result);
+            return StatusCode(result.StatusCode, result);
         }
 
         [HttpGet]
@@ -60,7 +61,17 @@ namespace Gesc.Features.Controllers
         public async Task<ActionResult<ReponseDeRequette>> ModifierUneFiliere(Guid filiereId, FiliereAModifierDto filiereAModifierDto)
         {
             var resultat = await _service.ModifierUneFiliere(filiereId, filiereAModifierDto);
-            return Ok(resultat);
+            return StatusCode(resultat.StatusCode, resultat);
+        }
+
+        [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<ReponseDeRequette>> SupprimerUneFiliere(Guid id)
+        {
+            var resultat = await _service.SupprimerUneFiliere(id);
+            return StatusCode(resultat.StatusCode, resultat);
         }
     }
 }

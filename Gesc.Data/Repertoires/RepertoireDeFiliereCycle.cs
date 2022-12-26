@@ -19,5 +19,16 @@ namespace Gesc.Data.Repertoires
             var filiereCycle = await _context.FiliereCycles.SingleOrDefaultAsync(x => x.Id == id);
             return filiereCycle != null;
         }
+
+        public async Task<FiliereCycle> Lire(Guid id)
+        {
+            var filiereCycle = await _context.FiliereCycles
+                .Include(fc => fc.Filiere)
+                .Include(fc => fc.Cycle)
+                .Include(fc => fc.Niveaux)
+                .SingleOrDefaultAsync(fc => fc.Id == id).ConfigureAwait(false);
+
+            return filiereCycle;
+        }
     }
 }

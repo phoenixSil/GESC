@@ -3,6 +3,7 @@ using Gesc.Features.Services.Contrats;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MsCommun.Reponses;
+using Polly.Caching;
 
 namespace Gesc.Features.Controllers
 {
@@ -22,7 +23,7 @@ namespace Gesc.Features.Controllers
         public async Task<ActionResult<ReponseDeRequette>> AjouterUnDepartement(DepartementACreerDto departementAAjouterDto)
         {
             var result = await _service.AjouterUnDepartement(departementAAjouterDto);
-            return Ok(result);
+            return StatusCode(result.StatusCode, result);
         }
 
         [HttpGet]
@@ -88,7 +89,17 @@ namespace Gesc.Features.Controllers
         public async Task<ActionResult<ReponseDeRequette>> ModifierUnDepartement(Guid departementId, DepartementAModifierDto departementAModifierDto)
         {
             var resultat = await _service.ModifierUnDepartement(departementId, departementAModifierDto);
-            return Ok(resultat);
+            return StatusCode(resultat.StatusCode, resultat);
+        }
+
+        [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<ReponseDeRequette>> SupprimerUnDepartement(Guid id)
+        {
+            var resultat = await _service.SupprimerUnDepartement(id);
+            return StatusCode(resultat.StatusCode, resultat);
         }
     }
 }

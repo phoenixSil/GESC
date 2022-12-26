@@ -58,9 +58,8 @@ namespace Gesc.Data.Repertoires
         public async Task<Niveau> LireDetail(Guid id)
         {
             var niveau = await _context.Niveaux
-                            .Include(niv => niv.FiliereCycle.Filiere)
-                            .Include(niv => niv.FiliereCycle.Cycle).
-                            Where(niv => niv.Id.Equals(id)).FirstOrDefaultAsync();
+                            .Include(niv => niv.FiliereCycle)
+                            .SingleOrDefaultAsync(niv => niv.Id.Equals(id)).ConfigureAwait(false);
             return niveau;
         }
 

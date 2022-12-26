@@ -3,6 +3,7 @@ using Gesc.Features.Services.Contrats;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MsCommun.Reponses;
+using Polly.Caching;
 
 namespace GCE.Api.Controllers
 {
@@ -22,7 +23,7 @@ namespace GCE.Api.Controllers
         public async Task<ActionResult<ReponseDeRequette>> AjouterUnecole(EcoleACreerDto ecoleAAjouterDto)
         {
             var result = await _service.AjouterUneEcole(ecoleAAjouterDto);
-            return Ok(result);
+            return StatusCode(result.StatusCode, result);
         }
 
         [HttpGet]
@@ -60,7 +61,17 @@ namespace GCE.Api.Controllers
         public async Task<ActionResult<ReponseDeRequette>> ModifierUnecole(Guid ecoleId, EcoleAModifierDto ecoleAModifierDto)
         {
             var resultat = await _service.ModifierUneEcole(ecoleId, ecoleAModifierDto);
-            return Ok(resultat);
+            return StatusCode(resultat.StatusCode, resultat);
+        }
+
+        [HttpDelete("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<ActionResult<ReponseDeRequette>> SupprimerUneEcole(Guid id)
+        {
+            var resultat = await _service.SupprimerUneEcole(id);
+            return StatusCode(resultat.StatusCode, resultat);
         }
     }
 }

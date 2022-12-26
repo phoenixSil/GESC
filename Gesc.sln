@@ -31,7 +31,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gesc.Features", "Gesc.Featu
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Ioc", "Ioc", "{F0012081-0CBE-4582-82FC-1509D9AD1106}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gesc.InjectionDeDependance", "Gesc.InjectionDeDependance\Gesc.InjectionDeDependance.csproj", "{0FCDDD74-54EB-4D55-8479-9D38150DA47A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gesc.InjectionDeDependance", "Gesc.InjectionDeDependance\Gesc.InjectionDeDependance.csproj", "{0FCDDD74-54EB-4D55-8479-9D38150DA47A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

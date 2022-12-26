@@ -52,7 +52,7 @@ namespace Gesc.Features.Core.CommandHandlers.Niveaux
                 reponse.Id = niveau.Id;
 
                 // Communication Asynchrone via le Bus Rabbit MQ
-                var dto = GenererNiveauMessagePourLeBus(resultat);
+                var dto = await GenererNiveauMessagePourLeBus(resultat);
                 await _publishEndPoint.Publish(dto, cancellationToken).ConfigureAwait(false);
 
                 return reponse;
