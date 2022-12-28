@@ -8,6 +8,7 @@ using Gesc.Features.Contrats.Repertoires;
 using Gesc.Features.Core.Commandes.Ecoles;
 using Gesc.Features.Core.CommandHandlers.Ecoles;
 using Gesc.Features.Dtos.Config.Ecole;
+using Gesc.Features.Dtos.Ecoles.Validations;
 using Gesc.Features.MappingProfile;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -111,7 +112,7 @@ namespace Gesc.Tests.HandlerTests.Ecoles
 
 
         [Fact]
-        public async Task Handle_ModifierEcole_DoitLeverUneExceptionSiDonneeInvalide()
+        public async Task Handle_ModifierEcole_DoitRenvoyerFalseSiLesDonneesNeSontPasConforme()
         {
             await AjoutterLesDonneesEnMemoire();
 
@@ -143,8 +144,12 @@ namespace Gesc.Tests.HandlerTests.Ecoles
                     Specialite = "Specialite"
                 });
 
-            var act = () => _handler.Handle(request, CancellationToken.None).ConfigureAwait(false);
-            act.Should().Throw<ValidationException>();
+            var validateur = new ValidateurDeLaModificationDecoleDto();
+            var resultatValidation = await validateur.ValidateAsync(request.EcoleAModifierDto, CancellationToken.None);
+
+            resultatValidation.Should().NotBe(null);
+            resultatValidation.IsValid.Should().BeFalse();
+            resultatValidation.Errors.Count.Should().BeGreaterThanOrEqualTo(1);
         }
 
 
