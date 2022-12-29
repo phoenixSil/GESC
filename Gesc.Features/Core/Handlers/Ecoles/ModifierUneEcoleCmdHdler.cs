@@ -56,8 +56,6 @@ namespace Gesc.Features.Core.CommandHandlers.Ecoles
                     reponse.Message = "Modification Reussit";
                     reponse.Id = ecole.Id;
                     reponse.StatusCode = (int)HttpStatusCode.OK;
-
-                    
                 }
                 else
                 {
