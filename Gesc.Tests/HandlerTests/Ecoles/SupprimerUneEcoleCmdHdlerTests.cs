@@ -12,12 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Moq;
 using MsCommun.Reponses;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Gesc.Tests.HandlerTests.Ecoles
 {
@@ -29,7 +24,6 @@ namespace Gesc.Tests.HandlerTests.Ecoles
         private readonly IMapper _mapper;
         private readonly SupprimerUneEcoleCmdHdler _handler;
         private SchoolConfigDbContext _context;
-        private readonly RepertoireDecole _repertoire;
         private readonly Guid _ecoleId;
 
         public SupprimerUneEcoleCmdHdlerTests()
@@ -50,7 +44,6 @@ namespace Gesc.Tests.HandlerTests.Ecoles
             _mapper = config.CreateMapper();
             _ecoleId = Guid.NewGuid();
             _handler = new SupprimerUneEcoleCmdHdler(_logger.Object, _pointDaccess.Object, _mediator.Object, _mapper);
-            _repertoire = new RepertoireDecole(_context);
         }
 
         [Fact]
@@ -61,8 +54,6 @@ namespace Gesc.Tests.HandlerTests.Ecoles
             {
                 Id = _ecoleId
             };
-
-            var ecoles = _context.Ecoles.ToList();
 
             _pointDaccess.Setup(
              pa => pa.RepertoireDecole.Lire(It.IsAny<Guid>()))
@@ -88,6 +79,67 @@ namespace Gesc.Tests.HandlerTests.Ecoles
             resultat.Success.Should().BeTrue();
             resultat.StatusCode.Should().Be((int)HttpStatusCode.OK);
             resultat.Id.Should().Be(_ecoleId);
+        }
+
+        [Fact]
+        public async Task Handle_SupprimerUneEcole_DoitRenvoyerUneReponseFauseSiEcoleNonTrouver()
+        {
+            await AjoutterLesDonneesEnMemoire();
+            var request = new SupprimerUneEcoleCmd
+            {
+                Id = Guid.NewGuid()
+            };
+
+            Ecole ecoleResult = null;
+
+            _pointDaccess.Setup(
+             pa => pa.RepertoireDecole.Lire(It.IsAny<Guid>()))
+                 .ReturnsAsync(ecoleResult);
+
+
+            var resultat = await _handler.Handle(request, CancellationToken.None).ConfigureAwait(false);
+
+            resultat.Should().BeOfType<ReponseDeRequette>();
+            resultat.Success.Should().BeFalse();
+            resultat.StatusCode.Should().Be((int)HttpStatusCode.NotFound);
+            resultat.Id.Should().BeEmpty();
+        }
+
+
+        [Fact]
+        public async Task Handle_SupprimerUneEcole_DoitRenvoyerUneReponseFauseSiSuppressionNonValide()
+        {
+            await AjoutterLesDonneesEnMemoire();
+            var request = new SupprimerUneEcoleCmd
+            {
+                Id = _ecoleId
+            };
+
+
+            _pointDaccess.Setup(
+             pa => pa.RepertoireDecole.Lire(It.IsAny<Guid>()))
+                 .ReturnsAsync(new Ecole
+                 {
+
+                     Id = _ecoleId,
+                     Cygle = "CYGLE",
+                     DateCreation = DateTime.Now,
+                     DateDerniereModification = DateTime.Now,
+                     Description = "description",
+                     Designation = "designation",
+                     Specialite = "Specialite"
+                 });
+
+            _pointDaccess.Setup(
+            pa => pa.RepertoireDecole.Supprimer(It.IsAny<Ecole>()))
+                .ReturnsAsync(false);
+
+            var resultat = await _handler.Handle(request, CancellationToken.None).ConfigureAwait(false);
+
+            resultat.Should().BeOfType<ReponseDeRequette>();
+            resultat.Success.Should().BeFalse();
+            resultat.StatusCode.Should().Be((int)HttpStatusCode.InternalServerError);
+            resultat.Id.Should().BeEmpty();
         }
 
         #region PRIVATE FONCTION CLASS
