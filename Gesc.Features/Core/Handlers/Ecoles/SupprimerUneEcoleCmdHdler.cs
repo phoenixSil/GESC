@@ -44,7 +44,7 @@ namespace Gesc.Features.Core.CommandHandlers.Ecoles
                     response.Message = $"l'ecole d'Id [{request.Id}] a ete supprimer avec success ";
                     response.StatusCode = (int)HttpStatusCode.OK;
                     response.Id = request.Id;
-                    _logger.LogInformation($"lecole dÌd  [{request.Id}] a ete supprimer ");
+                    _logger.LogInformation(message: $"lecole dÌd  [{request.Id}]  ete supprimer ");
                 }
                 else
                 {
