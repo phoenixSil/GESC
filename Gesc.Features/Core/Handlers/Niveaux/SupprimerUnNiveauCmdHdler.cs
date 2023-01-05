@@ -7,6 +7,7 @@ using AutoMapper;
 using MassTransit;
 using MsCommun.Messages.Niveaux;
 using MsCommun.Messages.Utils;
+using System.Net;
 
 namespace Gesc.Features.Core.CommandHandlers.Niveaux
 {
@@ -28,10 +29,12 @@ namespace Gesc.Features.Core.CommandHandlers.Niveaux
             if (niveau is not null)
             {
                 var resultat = await _pointDaccess.RepertoireDeNiveau.Supprimer(niveau);
+                
                 if (resultat is true)
                 {
                     response.Success = true;
                     response.Message = $"l'niveau d'Id [{request.Id}] a ete supprimer avec success ";
+                    response.StatusCode = (int)HttpStatusCode.OK;
 
                     // Communication Asynchrone via le Bus Rabbit MQ
                     var dto = GenererNiveauMessagePourLeBus(request.Id);
@@ -41,12 +44,14 @@ namespace Gesc.Features.Core.CommandHandlers.Niveaux
                 {
                     response.Success = false;
                     response.Message = $"Une Erreur Inconnu est Survenue dans le Serveur ";
+                    response.StatusCode = (int)HttpStatusCode.InternalServerError;
                 }
             }
             else
             {
                 response.Success = false;
                 response.Message = $"il n'existe pas d'niveau d'Id {request.Id}";
+                response.StatusCode = (int)HttpStatusCode.NotFound;
             }
             return response;
         }

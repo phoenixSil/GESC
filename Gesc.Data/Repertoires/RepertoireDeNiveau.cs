@@ -59,6 +59,7 @@ namespace Gesc.Data.Repertoires
         {
             var niveau = await _context.Niveaux
                             .Include(niv => niv.FiliereCycle)
+                            .ThenInclude(niv => niv.Filiere)
                             .SingleOrDefaultAsync(niv => niv.Id.Equals(id)).ConfigureAwait(false);
             return niveau;
         }

@@ -11,53 +11,72 @@ using MassTransit;
 using MsCommun.Messages.Niveaux;
 using Gesc.Domain.Modeles.Config;
 using MsCommun.Messages.Utils;
+using Newtonsoft.Json;
+using System.Net;
+using Castle.Core.Logging;
+using Microsoft.Extensions.Logging;
 
 namespace Gesc.Features.Core.CommandHandlers.Niveaux
 {
     public class ModifierUnNiveauCmdHdler : BaseCommandHandler<ModifierUnNiveauCmd>
     {
         private readonly IPublishEndpoint _publishEndPoint;
+        private readonly ILogger<ModifierUnNiveauCmdHdler> _logger;
 
-        public ModifierUnNiveauCmdHdler(IPublishEndpoint publishEndPoint, IPointDaccess pointDaccess, IMediator mediator, IMapper mapper) : base(pointDaccess, mediator, mapper)
+        public ModifierUnNiveauCmdHdler(ILogger<ModifierUnNiveauCmdHdler> logger, IPublishEndpoint publishEndPoint, IPointDaccess pointDaccess, IMediator mediator, IMapper mapper) : base(pointDaccess, mediator, mapper)
         {
             _publishEndPoint = publishEndPoint;
+            _logger = logger;
         }
 
         public async override Task<ReponseDeRequette> Handle(ModifierUnNiveauCmd request, CancellationToken cancellationToken)
         {
+            _logger.LogInformation($"On vas essayer de Modifier un Niveau . Donness {JsonConvert.SerializeObject(request.NiveauAModifierDto)}");
+            var reponse = new ReponseDeRequette();
             var niveau = await _pointDaccess.RepertoireDeNiveau.Lire(request.NiveauId);
 
             if (niveau is null)
-                throw new NotFoundException(nameof(niveau), request.NiveauId);
-
-            if (request.NiveauAModifierDto is not null)
             {
-                var reponse = new ReponseDeRequette();
+                reponse.Success = false;
+                reponse.Message = "Le niveau specifier est introuvable ";
+                reponse.Id = request.NiveauId;
+                reponse.StatusCode = (int)HttpStatusCode.NotFound;
+                _logger.LogWarning($"le niveau nexsite pas Id : [{request.NiveauId}]");
+            }
+            else
+            {
                 var validateur = new ValidateurDeLaModificationDeNiveauDto();
                 var resultatValidation = await validateur.ValidateAsync(request.NiveauAModifierDto, cancellationToken);
 
-                if (!await _pointDaccess.RepertoireDeNiveau.Exists(request.NiveauId))
-                    throw new BadRequestException($"L'un des Ids Niveau::[{request.NiveauId}] que vous avez entrez est null");
-
                 if (resultatValidation.IsValid is false)
-                    throw new ValidationException(resultatValidation);
+                {
+                    reponse.Success = false;
+                    reponse.Message = "Les Donnees du niveau ne sont pas valides  ";
+                    reponse.Id = request.NiveauId;
+                    reponse.StatusCode = (int)HttpStatusCode.BadRequest;
+                    _logger.LogError($"Les Donnees du niveau ne sont pas valides : {JsonConvert.SerializeObject(request.NiveauAModifierDto)}");
 
-                _mapper.Map(request.NiveauAModifierDto, niveau);
+                }
+                else
+                {
+                    _mapper.Map(request.NiveauAModifierDto, niveau);
 
-                var resultat = await _pointDaccess.RepertoireDeNiveau.Modifier(niveau);
-                await _pointDaccess.Enregistrer();
+                    await _pointDaccess.RepertoireDeNiveau.Modifier(niveau);
+                    await _pointDaccess.Enregistrer();
 
-                reponse.Success = true;
-                reponse.Message = "Modification Reussit";
-                reponse.Id = niveau.Id;
+                    reponse.Success = true;
+                    reponse.Message = "Modification Reussit";
+                    reponse.Id = niveau.Id;
+                    reponse.StatusCode = (int)HttpStatusCode.OK;
+                    _logger.LogInformation($"Modification du Niveau Reussit ID: [{request.NiveauId}]");
 
-                // Communication Asynchrone via le Bus Rabbit MQ
-                var dto = await GenererNiveauMessagePourLeBus(resultat);
-                await _publishEndPoint.Publish(dto, cancellationToken).ConfigureAwait(false);
+                    // mise a jour message Bus
+                    var dto = await GenererNiveauMessagePourLeBus(niveau).ConfigureAwait(false);
+                    await _publishEndPoint.Publish(dto, cancellationToken).ConfigureAwait(false);
 
-                return reponse;
+                }
             }
-            throw new BadRequestException("niveau a Modifier est null");
+            return reponse;
         }
 
         #region PRIVATE FUNCTION
