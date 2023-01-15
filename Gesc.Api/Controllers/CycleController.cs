@@ -1,26 +1,24 @@
-﻿using Gesc.Features.Dtos.Config.Cycles;
+﻿using Gesc.Api.Controllers;
+using Gesc.Features.Dtos.Config.Cycles;
 using Gesc.Features.Services.Contrats;
 using Microsoft.AspNetCore.Mvc;
 using MsCommun.Reponses;
 
 namespace Gesc.Features.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class CycleController : ControllerBase
+    public class CycleController : BaseController
     {
-        private readonly IServiceDeCycle _service;
 
-        public CycleController(IServiceDeCycle service)
+        public CycleController(IServiceDeFiliereCycle serviceDeFiliereCycle, IServiceDeDepartement serviceDeDepartement, IServiceDeFiliere serviceDeFiliere, IServiceDecole serviceDecole, IServiceDeCycle serviceDeCycle, IServiceDeNiveau serviceDeNiveau):
+            base(serviceDeFiliereCycle, serviceDeDepartement, serviceDeFiliere, serviceDecole, serviceDeCycle, serviceDeNiveau)
         {
-            _service = service;
         }
 
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<ReponseDeRequette>> AjouterUnCycle(CycleACreerDto etudiantAAjouterDto)
         {
-            var result = await _service.AjouterUnCycle(etudiantAAjouterDto);
+            var result = await _serviceDeCycle.AjouterUnCycle(etudiantAAjouterDto);
             return StatusCode(result.StatusCode, result);
         }
 
@@ -30,7 +28,7 @@ namespace Gesc.Features.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<List<CycleDto>>> LireTousLesCycles()
         {
-            var result = await _service.LireTousLesCycles();
+            var result = await _serviceDeCycle.LireTousLesCycles();
 
             if (result == null || result.Count == 0)
                 return NoContent();
@@ -44,7 +42,7 @@ namespace Gesc.Features.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<CycleDto>> LireUnCycle(Guid id)
         {
-            var result = await _service.LireDetailDunCycle(id);
+            var result = await _serviceDeCycle.LireDetailDunCycle(id);
 
             if (result == null)
                 return NotFound();
@@ -58,7 +56,7 @@ namespace Gesc.Features.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<ReponseDeRequette>> ModifierUnCycle(Guid etudiantId, CycleAModifierDto etudiantAModifierDto)
         {
-            var resultat = await _service.ModifierUnCycle(etudiantId, etudiantAModifierDto);
+            var resultat = await _serviceDeCycle.ModifierUnCycle(etudiantId, etudiantAModifierDto);
             return StatusCode(resultat.StatusCode, resultat);
         }
 
@@ -69,7 +67,7 @@ namespace Gesc.Features.Controllers
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<ReponseDeRequette>> SupprimerUnCycle(Guid id)
         {
-            var resultat = await _service.SupprimerUnCycle(id);
+            var resultat = await _serviceDeCycle.SupprimerUnCycle(id);
             return StatusCode(resultat.StatusCode, resultat);
         }
     }

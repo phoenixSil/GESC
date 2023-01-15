@@ -1,10 +1,7 @@
 ﻿using Gesc.Features.Dtos.Config.Niveaux;
 using Gesc.Features.Services.Contrats;
-using Gesc.Features.Services.Contrats;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MsCommun.Reponses;
-using Polly.Caching;
 
 namespace Gesc.Features.Controllers
 {

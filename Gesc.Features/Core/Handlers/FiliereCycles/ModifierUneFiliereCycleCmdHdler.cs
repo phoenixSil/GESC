@@ -1,10 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
-using Gesc.Features.Dtos.FiliereCycles;
-using Gesc.Features.Dtos.FiliereCycles;
-using Gesc.Features.Dtos.FiliereCycles.Validations; 
+using Gesc.Features.Dtos.FiliereCycles.Validations;
 using Gesc.Features.Core.Commandes.FiliereCycles;
-using Gesc.Domain.Modeles;
 using Gesc.Features.Contrats.Repertoires;
 using MsCommun.Reponses;
 using MsCommun.Exceptions;

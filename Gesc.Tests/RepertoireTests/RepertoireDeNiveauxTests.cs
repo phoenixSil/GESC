@@ -1,13 +1,7 @@
-﻿using FluentAssertions;
-using Gesc.Data.Context;
+﻿using Gesc.Data.Context;
 using Gesc.Data.Repertoires;
 using Gesc.Domain.Modeles.Config;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Gesc.Tests.RepertoireTests
 {
