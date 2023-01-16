@@ -1,7 +1,6 @@
 using MsCommun.Extensions;
 using Serilog;
 using Gesc.InjectionDeDependance;
-using Gesc.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,6 +29,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

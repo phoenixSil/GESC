@@ -84,9 +84,11 @@ namespace Gesc.Features.Core.CommandHandlers.Niveaux
         private async Task<NiveauACreerMessage> GenerateDtoForGieNiveau(Niveau niveau)
         {
             var niveauDetail = await _pointDaccess.RepertoireDeNiveau.LireDetail(niveau.Id);
+            var filiereCycleDetail = await _pointDaccess.RepertoireDeFiliereCycle.Lire(niveau.FiliereCycleId);
             var niveauMapper = _mapper.Map<NiveauACreerMessage>(niveauDetail);
             niveauMapper.Service = DesignationService.SERVICE_GESC;
             niveauMapper.Type = TypeMessage.CREATION;
+            niveauMapper.DesignationCycle = filiereCycleDetail.Cycle.Designation;
             return niveauMapper;
         }
 

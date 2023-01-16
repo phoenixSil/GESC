@@ -20,7 +20,7 @@ namespace Gesc.Data.Repertoires
             return filiereCycle != null;
         }
 
-        public async Task<FiliereCycle> Lire(Guid id)
+        public new async Task<FiliereCycle> Lire(Guid id)
         {
             var filiereCycle = await _context.FiliereCycles
                 .Include(fc => fc.Filiere)

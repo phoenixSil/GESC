@@ -9,6 +9,7 @@ using Gesc.Domain.Modeles;
 using MsCommun.Exceptions;
 using Gesc.Domain.Modeles.Config;
 using Gesc.Features.Core.BaseFactoryClass;
+using System.Net;
 
 namespace Gesc.Features.Core.CommandHandlers.FiliereCycles
 {
@@ -21,32 +22,29 @@ namespace Gesc.Features.Core.CommandHandlers.FiliereCycles
         {
             var response = new ReponseDeRequette();
 
-            var filiereCycle = await _pointDaccess.RepertoireDeFiliereCycle.Lire(request.Id);
+            var niveau = await _pointDaccess.RepertoireDeFiliereCycle.Lire(request.Id);
 
-            if (filiereCycle == null)
-                throw new NotFoundException(nameof(FiliereCycle), request.Id);
-
-            if (filiereCycle != null)
+            if (niveau is not null)
             {
-                var resultat = await _pointDaccess.RepertoireDeFiliereCycle.Supprimer(filiereCycle);
-                if (resultat == true)
+                var resultat = await _pointDaccess.RepertoireDeFiliereCycle.Supprimer(niveau);
+                if (resultat is true)
                 {
                     response.Success = true;
-                    response.Message = $"l'filiereCycle d'Id [{request.Id}] a ete supprimer avec success ";
-
-                    // on supprime la personne associer a cet filiereCycle 
-                    await _mediator.Send(new SupprimerUneFiliereCycleCmd { Id = filiereCycle.Id }, cancellationToken).ConfigureAwait(false);
+                    response.Message = $"la filireCycle d'Id [{request.Id}] a ete supprimer avec success ";
+                    response.StatusCode = (int)HttpStatusCode.OK;
                 }
                 else
                 {
                     response.Success = false;
                     response.Message = $"Une Erreur Inconnu est Survenue dans le Serveur ";
+                    response.StatusCode = (int)HttpStatusCode.InternalServerError;
                 }
             }
             else
             {
                 response.Success = false;
-                response.Message = $"il n'existe pas d'filiereCycle d'Id {request.Id}";
+                response.Message = $"il n'existe pas de filireCycle d'Id {request.Id}";
+                response.StatusCode = (int)HttpStatusCode.NotFound;
             }
             return response;
         }
