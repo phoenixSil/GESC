@@ -78,6 +78,7 @@ namespace Gesc.Tests.Handlers.Ecoles
                         Specialite = "la specialite"
                     });
             var resultat = await _handler.Handle(request, CancellationToken.None).ConfigureAwait(false);
+            
             resultat.Should().NotBeNull();
             resultat.Should().BeOfType<ReponseDeRequette>();
             resultat.Success.Should().BeTrue();
@@ -103,6 +104,7 @@ namespace Gesc.Tests.Handlers.Ecoles
             };
 
             var resultat = await _handler.Handle(request, CancellationToken.None).ConfigureAwait(false);
+            
             resultat.Should().NotBeNull();
             resultat.Should().BeOfType<ReponseDeRequette>();
             resultat.Success.Should().BeFalse();
