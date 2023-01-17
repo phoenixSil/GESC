@@ -84,7 +84,7 @@ namespace Gesc.Tests.Handlers.Ecoles
             resultat.Success.Should().BeTrue();
             resultat.Id.Should().NotBeEmpty();
 
-            // _logger.CustomVerify(LogLevel.Information, Times.AtLeast(3));
+             //_logger.CustomVerify(LogLevel.Information, Times.AtLeast(3));
         }
 
         [Fact]

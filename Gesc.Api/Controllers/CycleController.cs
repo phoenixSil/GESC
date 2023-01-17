@@ -6,12 +6,14 @@ using MsCommun.Reponses;
 
 namespace Gesc.Features.Controllers
 {
-    public class CycleController : BaseController
+    [Route("api/[controller]")]
+    [ApiController]
+    public class CycleController : Controller
     {
-
-        public CycleController(IServiceDeFiliereCycle serviceDeFiliereCycle, IServiceDeDepartement serviceDeDepartement, IServiceDeFiliere serviceDeFiliere, IServiceDecole serviceDecole, IServiceDeCycle serviceDeCycle, IServiceDeNiveau serviceDeNiveau):
-            base(serviceDeFiliereCycle, serviceDeDepartement, serviceDeFiliere, serviceDecole, serviceDeCycle, serviceDeNiveau)
+        private readonly IServiceDeCycle _serviceDeCycle;
+        public CycleController(IServiceDeCycle serviceDeCycle)
         {
+            _serviceDeCycle = serviceDeCycle;
         }
 
         [HttpPost]

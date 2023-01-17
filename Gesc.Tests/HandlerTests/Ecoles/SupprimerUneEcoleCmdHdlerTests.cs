@@ -84,7 +84,6 @@ namespace Gesc.Tests.HandlerTests.Ecoles
         [Fact]
         public async Task Handle_SupprimerUneEcole_DoitRenvoyerUneReponseFauseSiEcoleNonTrouver()
         {
-            await AjoutterLesDonneesEnMemoire();
             var request = new SupprimerUneEcoleCmd
             {
                 Id = Guid.NewGuid()
@@ -109,12 +108,10 @@ namespace Gesc.Tests.HandlerTests.Ecoles
         [Fact]
         public async Task Handle_SupprimerUneEcole_DoitRenvoyerUneReponseFauseSiSuppressionNonValide()
         {
-            await AjoutterLesDonneesEnMemoire();
             var request = new SupprimerUneEcoleCmd
             {
                 Id = _ecoleId
             };
-
 
             _pointDaccess.Setup(
              pa => pa.RepertoireDecole.Lire(It.IsAny<Guid>()))
@@ -140,6 +137,8 @@ namespace Gesc.Tests.HandlerTests.Ecoles
             resultat.Success.Should().BeFalse();
             resultat.StatusCode.Should().Be((int)HttpStatusCode.InternalServerError);
             resultat.Id.Should().BeEmpty();
+
+
         }
 
         #region PRIVATE FONCTION CLASS
@@ -156,18 +155,7 @@ namespace Gesc.Tests.HandlerTests.Ecoles
                 Designation = "designation",
                 Specialite = "Specialite"
             };
-            var ecole2 = new Ecole
-            {
-                Id = Guid.NewGuid(),
-                Cygle = "CYGLE 2",
-                DateCreation = DateTime.Now,
-                DateDerniereModification = DateTime.Now,
-                Description = "descriptionc2",
-                Designation = "designation 2",
-                Specialite = "Specialite 2"
-            };
-
-            await _context.Ecoles.AddRangeAsync(ecole, ecole2).ConfigureAwait(false);
+            await _context.Ecoles.AddAsync(ecole).ConfigureAwait(false);
             await _context.SaveChangesAsync();
         }
 
