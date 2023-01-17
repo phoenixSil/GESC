@@ -12,7 +12,7 @@ using MsCommun.Messages.Niveaux;
 
 namespace Gesc.Features.MappingProfile
 {
-    public class MappingProf : Profile
+    public class MappingProf: Profile
     {
         public MappingProf()
         {
