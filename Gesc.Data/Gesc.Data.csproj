@@ -14,7 +14,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.11" />
-    <PackageReference Include="MsCommun" Version="1.1.0" />
+    <PackageReference Include="MsCommun" Version="1.1.3" />
   </ItemGroup>
 
   <ItemGroup>

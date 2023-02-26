@@ -1,5 +1,6 @@
 ﻿using Gesc.Application;
 using Gesc.Data;
+using Gesc.Data.Context;
 using Gesc.Features;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

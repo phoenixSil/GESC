@@ -1,10 +1,12 @@
 ﻿using Gesc.Data.Context;
 using Gesc.Data.Repertoires;
 using Gesc.Features.Contrats.Repertoires;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MsCommun.Extensions;
+using MsCommun.Settings;
 
 namespace Gesc.Data
 {
@@ -13,7 +15,6 @@ namespace Gesc.Data
         public static IServiceCollection ConfigurePersistenceServices(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddSqlServerDbConfiguration<SchoolConfigDbContext>(configuration);
-
             services.AddScoped<IPointDaccess, PointDaccess>();
 
             services.AddScoped<IRepertoireDecole, RepertoireDecole>();
