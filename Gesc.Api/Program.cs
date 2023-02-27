@@ -1,6 +1,9 @@
 using MsCommun.Extensions;
 using Serilog;
 using Gesc.InjectionDeDependance;
+using MsCommun.Settings;
+using Microsoft.EntityFrameworkCore;
+using Gesc.Data.Context;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +19,7 @@ builder.Logging.AddSerilog(logger);
 
 Log.Information("GSCE Demmarre demarre ");
 builder.Host.UseSerilog((ctx, lc) => lc.WriteTo.Console().ReadFrom.Configuration(ctx.Configuration));
+
 
 builder.Services.AjoutDeToutesLesExtensions(builder.Configuration);
 builder.Services.AddConfigurationMassTransitWithRabbitMQ(builder.Configuration);
